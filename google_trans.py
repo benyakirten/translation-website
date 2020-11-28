@@ -11,11 +11,11 @@ def translate_data(data):
 
     ing_string = ''
     for i in data['ingredients']:
-        ing_string += f'{i[0]}%{i[2]}%'
+        ing_string += f'{i[0]}% {i[2]}% '
 
     prep_string = ''
     for i in data['preparation']:
-        prep_string += f'{i}%'
+        prep_string += f'{i}% '
 
     # Because we're using an API key, we have to do it a little differently
     translated_ing = requests.post(
