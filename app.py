@@ -16,10 +16,10 @@ def welcome():
         recipe = translation.giallo_zafferano(request.form['url'])
         trans_recipe = google_trans.translate_data(recipe)
         return render_template("processed.html",
-            title = recipe['name'],
-            image = recipe['image'],
-            ingredients = recipe['ingredients'],
-            prep = recipe['preparation']
+            title = trans_recipe['name'],
+            image = trans_recipe['image'],
+            ingredients = trans_recipe['ingredients'],
+            prep = trans_recipe['preparation']
         )
     return render_template("index.html")
 
