@@ -1,11 +1,17 @@
 from bs4 import BeautifulSoup
-import requests, re, json
+import requests, re, json, copy
 
 def giallo_zafferano(url = "https://ricette.giallozafferano.it/Zuppa-di-ceci.html"):
     r = requests.get(url,
         headers={'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'})
 
     soup = BeautifulSoup(r.content, 'html.parser')
+    
+    # This is if you want to examine the soup
+    # Make sure it is not deployed to the server!
+    # with open('recipe.html', 'w') as f:
+    #     f.write(soup.prettify())
+
     recipe = {}
 
     recipe['name'] = soup.find('title').text
@@ -77,7 +83,7 @@ def get_ingredients_g_z(soup):
                 print('************')
         if quantity in especially_vulgar_fractions:
             quantity = especially_vulgar_fractions[quantity]
-        quantity, unit = convert_units(quantity, unit)
+        quantity, unit = convert_units_ing(quantity, unit)
         try:
             ing.append([name, round(float(quantity), 2), unit])
         except:
@@ -85,20 +91,38 @@ def get_ingredients_g_z(soup):
     return ing
 
 def get_preparation_g_z(soup):
+    # This gets the div with all the steps in it; the first item in the array
+    # it has two parts: some formal stuff we don't care about and the content
+    # We're cutting the first part out. This could be refactored.
     temp_steps = soup.find_all("div", {"class": "gz-content-recipe gz-mBottom4x"})[1:]
+    # Now we take the meat and find all the P elements in it
     p = temp_steps[0].find_all('p')
     prep = []
+    # There are several p elements
     for i in p:
+        # In each of them, we're looking for elements in them
         for j in i:
+            # If there isn't one, we add it to our array
             if not j.name:
-                prep.append(j.strip().replace('\n',''))
+                temp = j.strip().replace('\n','')
+                temp = convert_units_prep(temp)
+                prep.append(temp)
+            # If there is, it's an <a> element that links to the general concept of the item
+            # the reason why I exclude <span> elements is that there are many of them
+            # and they just are numbers that number the steps
+            # this could be refactored to put the photo at each point - which corresponds with the span
             elif j.name != 'span':
+                # this isn't a f string because you can't use \n in them
                 prep[-1] += ' ' + j.text.strip().replace('\n', '')
-    prep = [i[2:] if i[:2] == '. ' else i if i != '.' and len(i) > 0 else 1+1 for i in prep]
+    # This is a complicated list comprehension; I wanted to try it; it's to get rid of '. ' and the like
+    # if they begin an instruction; also the instruction should have some content;
+    # I don't know how to just do if cases without else in a list comprehension with at least one else
+    prep = [i[2:] if i[:2] == '. ' or i[:2] == ', ' or i[:2] == ': ' or i[:2] == '; ' else i if i != '.' and len(i) > 0 else 1+1 for i in prep]
+    # I don't want any elements that are a number
     prep = [i for i in prep if isinstance(i, str)]
     return prep
 
-def convert_units(quantity, unit):
+def convert_units_ing(quantity, unit):
     # Dict is in the format:
     # key : (ratio, translated_key)
     trans_dict = {
@@ -127,6 +151,48 @@ def convert_units(quantity, unit):
         return con_q, con_u
     else:
         return (quantity, unit)
+
+def convert_units_prep(prep):
+    # We'll make a copy so we don't have any side effects
+    return_string = copy.deepcopy(prep)
+
+    # this dictionary is of the format:
+    # scalar, constant, unit
+    trans_dict = {
+        'g': (0.00220462, 0, 'lb'),
+        'grammi': (0.00220462, 0, 'lb'),
+        'l': (33.8140227, 0, 'fl oz'),
+        'litri': (33.8140227, 0, 'fl oz'),
+        'ml': (33.8140227 * 1000, 0, 'fl oz'),
+        'millilitri': (33.8140227 * 1000, 0, 'fl oz'),
+        '°': (1.8, 32, '°'),
+        'cm': (0.39370079, 0, 'inches'),
+        'mm': (0.03937008, 0, 'inches')
+    }
+    regex = ['(\d*)([°])', '(\d+[,\./-x]\d+)\s(\w*)', '[^,\./-](\d+)\s(\w+)']
+    
+    for ex in regex:
+        match = re.findall(ex, return_string)
+        if len(match) > 0:
+            for group in match:
+                # group 1 is always the unit
+                if group[1] in trans_dict:
+                    # Convert the str to a float
+                    amount = float(group[0])
+                    # Convert the quantities
+                    # it's equal to the float times the scalar plus the constant
+                    conv_amount = (amount * trans_dict[group[1]][0]) + trans_dict[group[1]][1]
+                    conv_unit = trans_dict[group[1]][2]
+                    if ex.find('\s') != -1:
+                        replaced_seq = f"{group[0]} {group[1]}"
+                        replacing_seq = f"{conv_amount} {conv_unit}"
+                    else:
+                        replaced_seq = f"{group[0]}{group[1]}"
+                        replacing_seq = f"{conv_amount}{conv_unit}"
+
+                    return_string = return_string.replace(replaced_seq, replacing_seq)
+    return return_string
+                    
 
 if __name__ == '__main__':
     giallo_zafferano()

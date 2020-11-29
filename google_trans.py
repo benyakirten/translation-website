@@ -1,20 +1,21 @@
-import requests
-import json
-import os
+import requests, json, os, copy
 
 def translate_data(data):
-    # For the purposes of google translate, this is the easiest way to prepare the data
-    # With a % as a marker between data sections
+    deep_copy = copy.deepcopy(data)
 
     # Don't steal my API key. I'd be very cross!
     API_KEY = os.environ.get('API_KEY')
 
+    # For the purposes of google translate, this is the easiest way to prepare the data
+    # Because the google translate api wants a file with the data or a string
+    # With a % as a marker between data sections
+    # Note the space after every one: google translate will mess up without it
     ing_string = ''
-    for i in data['ingredients']:
+    for i in deep_copy['ingredients']:
         ing_string += f'{i[0]}% {i[2]}% '
 
     prep_string = ''
-    for i in data['preparation']:
+    for i in deep_copy['preparation']:
         prep_string += f'{i}% '
 
     # Because we're using an API key, we have to do it a little differently
@@ -60,20 +61,20 @@ def translate_data(data):
         if temp:
             if i % 2 == 0:
                 try:
-                    data['ingredients'][i//2][0] = temp
+                    deep_copy['ingredients'][i//2][0] = temp
                 except:
                     print(f"error at ing index: {i}")
                     print(f"temp = {temp}")
                     print(f"ing_list = {ing_list}")
-                    print(f"ingredients = {data['ingredients']}")
+                    print(f"ingredients = {deep_copy['ingredients']}")
             else:
                 try:
-                    data['ingredients'][i//2][2] = temp
+                    deep_copy['ingredients'][i//2][2] = temp
                 except:
                     print(f"error at ing index: {i}")
                     print(f"temp = {temp}")
                     print(f"ing_list = {ing_list}")
-                    print(f"ingredients = {data['ingredients']}")
+                    print(f"ingredients = {deep_copy['ingredients']}")
     
     for i in range(len(prep_list)):
         temp = prep_list[i].strip()
@@ -81,13 +82,10 @@ def translate_data(data):
             temp = temp[2:]
         if temp:
             try:
-                data['preparation'][i] = temp
+                deep_copy['preparation'][i] = temp
             except:
                 print(f"error at prep index: {i}")
                 print(f"prep_list = {prep_list}")
-                print(f"prep = {data['preparation']}")
+                print(f"prep = {deep_copy['preparation']}")
 
-    if len(data['preparation']) % 2 != 0:
-        data['preparation'].pop()
-
-    return data
+    return deep_copy
