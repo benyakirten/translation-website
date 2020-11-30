@@ -171,7 +171,7 @@ def convert_units_prep(prep):
         'cm': (0.39370079, 0, 'inches'),
         'mm': (0.03937008, 0, 'inches')
     }
-    regex = ['(\d+)(\w+)', '(\d+[,\./-x]\d+)[\s](\w*)', '[^,\./-](\d+)[\s](\w+)']
+    regex = ['(\d+)(\w+)', '(\d+[,\.\/\-x]\d+)[\s](\w*)', '[^,\./-](\d+)[\s](\w+)']
     
     for ex in regex:
         match = re.findall(ex, return_string)
