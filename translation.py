@@ -181,7 +181,12 @@ def convert_units_prep(prep):
                 if group[1].lower() in trans_dict:
                     # This is a hacky solution that
                     # Convert the str to a float
-                    amount = float(group[0])
+                    if ex == regex[1]:
+                        digits = re.findall('\d+', group[0])
+                        digits = [float(i) for i in digits]
+                        amount = (sum(digits)/len(digits))
+                    else:
+                        amount = float(group[0])
                     # Convert the quantities
                     # it's equal to the float times the scalar plus the constant
                     conv_amount = round((amount * trans_dict[group[1]][0]) + trans_dict[group[1]][1], 2)
