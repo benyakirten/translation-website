@@ -80,6 +80,8 @@ def translate_data(data):
         temp = prep_list[i].strip()
         if temp[:2] == '. ' or temp[:2] == ', ':
             temp = temp[2:]
+        elif temp == '.' or temp == ',' or temp == ';' or temp == ':':
+            temp = ''
         if temp:
             try:
                 deep_copy['preparation'][i] = temp

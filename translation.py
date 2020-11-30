@@ -128,6 +128,7 @@ def convert_units_ing(quantity, unit):
     trans_dict = {
         'g': (0.00220462, 'lb'),
         'grammi': (0.00220462, 'lb'),
+        'kg': (2.205, 'lb'),
         'l': (33.8140227, 'fl oz'),
         'litri': (33.8140227, 'fl oz'),
         'ml': (33.8140227 * 1000, 'fl oz'),
@@ -161,6 +162,7 @@ def convert_units_prep(prep):
     trans_dict = {
         'g': (0.00220462, 0, 'lb'),
         'grammi': (0.00220462, 0, 'lb'),
+        'kg': (2.205, 0, 'lb'),
         'l': (33.8140227, 0, 'fl oz'),
         'litri': (33.8140227, 0, 'fl oz'),
         'ml': (33.8140227 * 1000, 0, 'fl oz'),
@@ -169,20 +171,40 @@ def convert_units_prep(prep):
         'cm': (0.39370079, 0, 'inches'),
         'mm': (0.03937008, 0, 'inches')
     }
-    regex = ['(\d*)([°])', '(\d+[,\./-x]\d+)\s(\w*)', '[^,\./-](\d+)\s(\w+)']
+    regex = ['(\d+)(\w+)', '(\d+[,\./-x]\d+)[\s](\w*)', '[^,\./-](\d+)[\s](\w+)']
     
     for ex in regex:
         match = re.findall(ex, return_string)
         if len(match) > 0:
             for group in match:
                 # group 1 is always the unit
-                if group[1] in trans_dict:
+                if group[1].lower() in trans_dict:
+                    # This is a hacky solution that
                     # Convert the str to a float
                     amount = float(group[0])
                     # Convert the quantities
                     # it's equal to the float times the scalar plus the constant
-                    conv_amount = (amount * trans_dict[group[1]][0]) + trans_dict[group[1]][1]
+                    conv_amount = round((amount * trans_dict[group[1]][0]) + trans_dict[group[1]][1], 2)
                     conv_unit = trans_dict[group[1]][2]
+
+                    # Convert the quantities according to convenient imperial units
+                    if conv_unit == 'inches' and conv_amount > 12:
+                        # Convert any amount over 12 inches to feet and inches
+                        feet = conv_amount // 12
+                        inches = conv_amount % 12
+                        conv_amount = f"{feet}'{inches}''"
+                        conv_unit == 'feet and inches'
+                    if conv_unit == 'fl oz' and conv_amount > 8:
+                        # Confort to quart/cup if the amount is large enough
+                        if conv_amount > 32:
+                            conv_amount = round(conv_amount/32, 2)
+                            conv_unit = 'quart'
+                        conv_amount = round(conv_amount/8, 2)
+                        conv_unit = 'cup'
+                    if conv_unit == 'lb' and conv_amount < 1:
+                        # Convert to oz if quantity is less than a pound
+                        conv_amount = 8 * conv_amount
+                        conv_unit = 'oz'
                     if ex.find('\s') != -1:
                         replaced_seq = f"{group[0]} {group[1]}"
                         replacing_seq = f"{conv_amount} {conv_unit}"
@@ -192,7 +214,6 @@ def convert_units_prep(prep):
 
                     return_string = return_string.replace(replaced_seq, replacing_seq)
     return return_string
-                    
 
 if __name__ == '__main__':
     giallo_zafferano()
