@@ -1,11 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 
-import translation
-import google_trans
-
-# remember, for development:
-# export FLASK_APP=app.py
-# export FLASK_DEBUG=1
+import translate_g_z
+import apply_translation
 
 app = Flask(__name__, instance_relative_config=True)
 
@@ -13,8 +9,8 @@ app = Flask(__name__, instance_relative_config=True)
 @app.route('/', methods = ('GET', 'POST'))
 def welcome():
     if request.method == 'POST':
-        recipe = translation.giallo_zafferano(request.form['url'])
-        trans_recipe = google_trans.translate_data(recipe)
+        recipe = translate_g_z.process_url(request.form['url'])
+        trans_recipe = apply_translation.translate_data(recipe)
         return render_template("processed.html",
             title = trans_recipe['name'],
             image = trans_recipe['image'],
