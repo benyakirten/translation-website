@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <style>
+    <!-- <style>
         main {
             margin: 5% 30%;
             display: flex;
@@ -16,7 +16,8 @@
             max-width: 250px;
             max-height: 250px;
         }
-    </style>
+    </style> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 </head>
 <body>
     <main>

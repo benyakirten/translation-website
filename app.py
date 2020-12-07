@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 
-import translate_g_z
+import giallo_zafferano
+import fatto_di_casa
 import apply_translation
 
 app = Flask(__name__, instance_relative_config=True)
@@ -9,7 +10,10 @@ app = Flask(__name__, instance_relative_config=True)
 @app.route('/', methods = ('GET', 'POST'))
 def welcome():
     if request.method == 'POST':
-        recipe = translate_g_z.process_url(request.form['url'])
+        if request.form['site'] == 'gz':
+            recipe = giallo_zafferano.GZConverter(request.form['url'])
+        elif request.form['site'] == 'fdc':
+            recipe = fatto_di_casa.FCConverter(request.form['url'])
         trans_recipe = apply_translation.translate_data(recipe)
         return render_template("processed.html",
             title = trans_recipe['name'],
