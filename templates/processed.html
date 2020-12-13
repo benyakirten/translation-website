@@ -5,20 +5,54 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ title }}</h1>
-<img src="{{ image }}" alt="{{ title }}">
-<hr>
-<h2>Ingredients</h2>
-<ul class="ingredients">
-    {% for ingredient in ingredients %}
-        <li>{{ ingredient[0] }} - {{ ingredient[1] }} {{ ingredient[2] }}</li>
-    {% endfor %}
-</ul>
-<hr>
-<h2>Preparation</h2>
-<ul class="prep">
-    {% for step in prep %}
-        <li>{{ step }}</li>
-    {% endfor %}
-</ul>
+<main class="recipe">
+    <h1 class="heading-1">{{ title }}</h1>
+    <div class="recipe__img-container">
+        <img class="recipe__img" src="{{ image }}" alt="{{ title }}">
+    </div>
+    <h2 class="heading-2">Ingredients</h2>
+    <ul class="recipe__ingredients">
+        {% for ingredient in ingredients %}
+            <li class="recipe__ingredients__ing">
+                <span class="recipe__ingredients__ing--name">{{ ingredient[0].capitalize() }}</span>
+                <span class="recipe__ingredients__ing--qt">{{ ingredient[1] }} </span>
+                {% if ingredients[2] is defined %}
+                    <span class="recipe__ingredients__ing--unit">{{ ingredient[2] }}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <h2 class="heading-2 .u-margin-bottom-sm">Preparation</h2>
+    <ul class="recipe__prep">
+        {% for step in prep %}
+            <li class="recipe__prep__item">{{ step }}</li>
+        {% endfor %}
+    </ul>
+</main>
+<aside class="aside">
+    <h2 class="heading-2">Translate a recipe from Italian to English</h1>
+    <form method="post" class="form">
+        <div class=form__group>
+            <input
+                type="text"
+                name="url"
+                id="url"
+                class="form__input"
+                placeholder="Insert a URL"
+                required
+            >
+            <label class="form__label" for="url">Recipe URL:</label>
+        </div>
+        <div class="form__group">
+            <select name="site" id="site" class="form__select">
+                <option class="form__select__option" value="gz">Giallo Zafferano</option>
+                <option class="form__select__option" value="fdc">Fatto in Casa</option>
+            </select>
+            <label for="site" class="form__label">Website</label>
+        </div>
+        <div class="form__group">
+            <button type="submit" class="btn form__btn">Submit &rarr;</button>
+        </div>
+    </form>
+</aside>
 {% endblock %}

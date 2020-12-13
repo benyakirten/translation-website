@@ -5,18 +5,36 @@ Translate a recipe
 {% endblock %}
 
 {% block content %}
-<form method="post">
-    <label for="url">Insert a receipe URL:</label>
-    <input
-        type="text"
-        name="url"
-        id="url"
-    >
-    <label for="site">Choose a website</label>
-    <select name="site" id="site">
-        <option value="gz">Giallo Zafferano</option>
-        <option value="fdc">Fatto di Casa</option>
-    </select>
-    <button type="submit">Submit</button>
-</form>
+<main class="index">
+    <div class="index__background-img"></div>
+    <div class="index__display">
+        <h1 class="heading-1">Translate a recipe from Italian to English</h1>
+        <form method="post" class="form">
+            <div class=form__group>
+                <input
+                    type="text"
+                    name="url"
+                    id="url"
+                    class="form__input"
+                    placeholder="Insert a URL"
+                    required
+                >
+                <label class="form__label" for="url">Recipe URL:</label>
+            </div>
+            <div class="form__group">
+                <select name="site" id="site" class="form__select">
+                    <option class="form__select__option" value="gz">Giallo Zafferano</option>
+                    <option class="form__select__option" value="fdc">Fatto in Casa</option>
+                </select>
+                <label for="site" class="form__label">Website</label>
+            </div>
+            <div class="form__group">
+                <button type="submit" class="btn form__btn">Submit &rarr;</button>
+            </div>
+        </form>
+        <footer class="footer">
+            <p class="copyright">&copy; 2020 by Benyakir Horowitz. All rights reserved.</p>
+        </footer>
+    </div>
+</main>
 {% endblock %}

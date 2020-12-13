@@ -5,6 +5,16 @@ def convert_units_ing(quantity, unit):
     Pass in a number and a quantity in metric units
     Returns a number and quantity in (American) imperial units
     """
+    try:
+        quantity = str(quantity)
+    except:
+        raise TypeError("quantity cannot be coerced into a string")
+
+    try:
+        unit = str(unit)
+    except:
+        raise TypeError("unit cannot be coerced into a string")
+
     # Dict is in the format:
     # key : (ratio, translated_key)
     # Constants are not needed
@@ -19,14 +29,15 @@ def convert_units_ing(quantity, unit):
         'ml': (33.8140227 / 1000, 'fl oz'),
         'millilitri': (33.8140227 / 1000, 'fl oz')
     }
-    if unit in unit_conversion:
+    unit_lower = unit.lower()
+    if unit_lower in unit_conversion:
         # The quantity can sometimes contain , instead of .
         # because decimals are written with a comma
         quantity = quantity.replace(',', '.')
         # There is no need for a try/except block because
         # it will be of the proper format if it has gotten this far
-        con_q, con_u = (round(unit_conversion[unit][0] * float(quantity), 2), unit_conversion[unit][1])
-
+        con_q = (round(unit_conversion[unit_lower][0] * float(quantity), 2))
+        con_u = unit_conversion[unit_lower][1]
         # Sometimes units will be something like .14 lb
         # So they will be converted to oz if they are small enough
         # Or fl oz to cups/quarts if they're large enough
@@ -35,14 +46,12 @@ def convert_units_ing(quantity, unit):
     else:
         try:
             quantity = round(float(quantity), 2)
-        except:
-            pass
-        return (quantity, unit)
+        finally:
+            return (quantity, unit)
 
 def convert_units_prep(prep):
     """
-    Takes a string, parses it for metric units and converts
-    both them and the quantities into imperial units and quantities
+    Takes a string, parses it for metric units and converts both them and the quantities into imperial units and quantities
     """
     # We'll make a copy so we don't have any side effects
     # Because we'll be doing some replacing if we have a hit
@@ -61,6 +70,7 @@ def convert_units_prep(prep):
         'ml': (33.814 / 1000, 0, 'fl oz'),
         'millilitri': (33.814 / 1000, 0, 'fl oz'),
         '°': (1.8, 32, '°'),
+        'gradi': (1.8, 32, 'gradi'),
         'c': (1.8, 32, 'F'),
         'cm': (0.3937, 0, 'inches'),
         'mm': (0.03937, 0, 'inches'),
@@ -73,7 +83,7 @@ def convert_units_prep(prep):
     # as the former and the latter as the latter
     # i.e. 1,5l isn't treated as 1, as not a unit and 5l
     # group(1) will always be the quantity, group(2) always the unit
-    regex = ['(\d+)([a-zA-Z°]+)', '(\d+[,\.\/\-x]\d+)[\s]([a-zA-Z°]+)', '[^,\./-x](\d+)[\s]?([a-zA-Z°]+)']
+    regex = ['(\d+)([a-zA-Z°]+)', '(\d+[,\.]?\d*[\/\-x]\d+[,\.]?\d*)[\s]?([a-zA-Z°]+)', '(\d+[,\.\/\-x]\d+)[\s]?([a-zA-Z°]+)', '[^,\./-x](\d+)[\s]?([a-zA-Z°]+)']
     
     for ex in regex:
         match = re.findall(ex, return_string)
@@ -91,7 +101,7 @@ def convert_units_prep(prep):
                     conv_unit = unit_conversions[group[1]][2]
                     
                     # Regex[1], because of the , . - needs special treatment
-                    if ex == regex[1]:
+                    if ex == regex[1] or ex == regex[2]:
                         # We are doing the same replacement that we did above
                         # replacing , with . so it can be converted to a float
                         amount_punctuation_replaced = group[0].replace(',', '.')
@@ -149,17 +159,11 @@ def convert_units_prep(prep):
 
                     if return_string.find("° C "):
                         return_string = return_string.replace("° C ", "° F ")
-
-
-
-    # The process has come to an end
     return return_string
 
 def simplify_units(quantity, unit, change_unit = True):
     """
-    Takes a quantity and unit in imperial units
-    and if it is within certain tolerances, changes it
-    to a more convenient quantity
+    Takes a quantity and unit in imperial units and if it is within certain tolerances, changes it to a more convenient quantity
     """
     return_quantity = quantity
     return_unit = unit
@@ -170,9 +174,10 @@ def simplify_units(quantity, unit, change_unit = True):
         # Convert any quantity over 12 inches to feet and inches
         feet = quantity // 12
         inches = quantity % 12
-        return_quantity = f"{feet}'{inches}''"
+        return_quantity = f"{feet}'"
         return_unit = 'feet'
-        if inches >= 1:
+        if inches > 0:
+            return_quantity += f"{inches}''"
             return_unit += ' and inches'
     elif unit == 'fl oz' and quantity >= 8:
         # Confort to quart/cup if the quantity is > 32 or > 8

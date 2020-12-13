@@ -1,2 +1,7 @@
-# Ignore __pycache__
+# Folders
 /__pycache__
+/static/sass
+
+# Documents
+.ds_store
+*.scss

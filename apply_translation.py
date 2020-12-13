@@ -9,22 +9,22 @@ def translate_data(data, *, source_language = "it", target_language = "en", clie
         [string, float, string]
     recipe['preparation']: list of strings
 
-    And return a dictionary of the same format but having been
-    translated by google translate
+    And return a dictionary of the same format that has been translated by google translate
 
-    If the client is set to true, then it is assumed that you have
-    a service account and the GOOGLE_APPLICATION_CREDENTIALS
-    environment variable if run offline. If run on a google-hosted server,
-    this is handled by default.
+    If the client is set to true, then it is assumed that you have a service account and the GOOGLE_APPLICATION_CREDENTIALS environment variable if run offline.
+    If run on a google-hosted server, this is handled by default.
     For more information consult the documentation at: 
     https://cloud.google.com/translate/docs/setup
 
-    If the client is set to false, it is assumed you have an environment
-    variable set as API_KEY.
+    If the client is set to false, it is assumed you have an environment variable set as API_KEY.
     For more information, consult the documentation at:
     https://cloud.google.com/docs/authentication/api-keys
 
     """
+    # Occasionally, the Converter class is given rather than the recipe object
+    #   this is to make lives a little easier
+    # If an error still arises, then neither the recipe nor the Converter class is valid
+    #   for the rest of the operations
     try:
         deep_copy = copy.deepcopy(data)
     except:
@@ -39,7 +39,7 @@ def translate_data(data, *, source_language = "it", target_language = "en", clie
     for i in deep_copy['preparation']:
         prep_string += f'{i} % '
 
-    if client == False:
+    if not client:
         import requests
         # An API key must be gotten from google
         API_KEY = os.environ.get('API_KEY')
@@ -73,8 +73,13 @@ def translate_data(data, *, source_language = "it", target_language = "en", clie
     translated_prep = json.loads(translated_prep.content)
 
     # We are now splitting the data back into lists using the %
-    ing_list = translated_ing['data']['translations'][0]['translatedText'].split('%')
-    prep_list = translated_prep['data']['translations'][0]['translatedText'].split('%')
+    # The POST request will give back a more detailed object
+    if not client:
+        ing_list = translated_ing['data']['translations'][0]['translatedText'].split('%')
+        prep_list = translated_prep['data']['translations'][0]['translatedText'].split('%')
+    else:
+        ing_list = translated_ing['translatedText'].split('%')
+        prep_list = translated_prep['translatedText'].split('%')
 
     # Occasionally, words will be incorrectly translated
     # This is to catch the worst offenders
@@ -87,18 +92,23 @@ def translate_data(data, *, source_language = "it", target_language = "en", clie
             'rib': 'stick',
             'spoon': 'spoonful',
             'twig': 'sprig',
-            'fine salt': 'table salt',
+            'fine salt': 'Table salt',
             'n / a': 'n/a',
             'carote': 'carrots',
             'carots': 'carrots'
         }
 
-    # This is for the rare circumstance in which the quantity needs to be translated
-    # The only circumstance I've run into is '5 o 6', 5 or 6
-    shorter = deep_copy['ingredients']
+    # This is for the rare circumstance in which the quantity is a word or contains one
+    # I have yet to see if it needs translation or can be handled with its few exceptions
+    ingredient_quantity_words = {
+        ' o ':' or ',
+        'mezzo':'Half'
+    }
+    shorter = deep_copy['ingredients'].copy()
     for i in range(len(shorter)):
-        if isinstance(shorter[i][1], str) and ' o ' in shorter[i][1]:
-            deep_copy['ingredients'][i][1] = shorter[i][1].replace(' o ',' or ')
+        for word in ingredient_quantity_words.keys():
+            if isinstance(shorter[i][1], str) and word in shorter[i][1]:
+                deep_copy['ingredients'][i][1] = shorter[i][1].replace(word,ingredient_quantity_words[word])
 
     for i in range(len(ing_list)):
         temp = ing_list[i].strip()

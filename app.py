@@ -6,7 +6,6 @@ import apply_translation
 
 app = Flask(__name__, instance_relative_config=True)
 
-# Just something real simple for the translation page
 @app.route('/', methods = ('GET', 'POST'))
 def welcome():
     if request.method == 'POST':
@@ -15,6 +14,12 @@ def welcome():
         elif request.form['site'] == 'fdc':
             recipe = fatto_di_casa.FCConverter(request.form['url'])
         trans_recipe = apply_translation.translate_data(recipe)
+
+        # To not have them displayed in the template
+        for idx in range(len(trans_recipe['ingredients'])):
+            if trans_recipe['ingredients'][idx][2] == 'n/a':
+                del trans_recipe['ingredients'][idx][2]
+        
         return render_template("processed.html",
             title = trans_recipe['name'],
             image = trans_recipe['image'],
