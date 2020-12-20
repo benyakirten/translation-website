@@ -1,8 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request
-
-import giallo_zafferano
-import fatto_di_casa
-import apply_translation
+import r2api
 
 app = Flask(__name__, instance_relative_config=True)
 
@@ -10,12 +7,12 @@ app = Flask(__name__, instance_relative_config=True)
 def welcome():
     if request.method == 'POST':
         if request.form['site'] == 'gz':
-            recipe = giallo_zafferano.GZConverter(request.form['url'])
+            recipe = r2api.GZConverter(request.form['url'])
         elif request.form['site'] == 'fdc':
-            recipe = fatto_di_casa.FCConverter(request.form['url'])
-        trans_recipe = apply_translation.translate_data(recipe)
+            recipe = r2api.FCConverter(request.form['url'])
+        trans_recipe = r2api.translate_data(recipe)
 
-        # To not have them displayed in the template
+        # To not have display empty units in the output
         for idx in range(len(trans_recipe['ingredients'])):
             if trans_recipe['ingredients'][idx][2] == 'n/a':
                 del trans_recipe['ingredients'][idx][2]
