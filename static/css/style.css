@@ -83,7 +83,7 @@ body {
 }
 
 body {
-  font-family: "Comfortaa", cursive;
+  font-family: "Cardo", serif;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -365,7 +365,6 @@ body {
 }
 .recipe__prep__item::before {
   content: counter(prep-counter);
-  font-family: "Kanit", sans-serif;
   font-size: 5rem;
   color: #cc8e35;
 }

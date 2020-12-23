@@ -91,7 +91,6 @@
         }
         &__item::before {
             content: counter(prep-counter);
-            font-family: 'Kanit', sans-serif;
             font-size: 5rem;
             color: $color-orange-dark;
         }
