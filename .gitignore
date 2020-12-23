@@ -1,8 +1,6 @@
 # Folders
 /__pycache__
 /virtual
-/static/sass
 
 # Documents
 .ds_store
-*.scss
