@@ -66,32 +66,39 @@
 html {
   font-size: 62.5%;
 }
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  html {
+    font-size: 45%;
+  }
+}
 
 body {
   box-sizing: border-box;
-  background-color: #F1F1F1;
+  background-color: #f7f1e3;
 }
 
 body {
   font-family: "Comfortaa", cursive;
   font-weight: 400;
   line-height: 1.2;
-  color: #045762;
 }
 
 .heading-1 {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
+  color: #d1ccc0;
   display: block;
 }
 
 .heading-2 {
   margin: 4rem;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
+  color: #d1ccc0;
   display: block;
-}
-
-.copyright {
-  font-size: 1.1rem;
 }
 
 .u-margin-bottom-sm {
@@ -99,21 +106,21 @@ body {
 }
 
 .btn {
-  padding: 1.5rem 4rem;
-  border-radius: 10rem;
+  padding: 2rem 5rem;
   transition: all 0.2s;
+  border-radius: 5%;
   position: relative;
   font-size: 1.6rem;
   border: none;
   display: inline-block;
-  color: #F3F2DA;
-  background-color: #045762;
+  color: #227093;
+  background-color: #ffb142;
   cursor: pointer;
 }
 .btn::after {
   content: "";
-  border-radius: 10rem;
-  background-color: #045762;
+  background-color: #ffb142;
+  border-radius: 5%;
   transition: all 0.4s;
   position: absolute;
   display: inline-block;
@@ -124,7 +131,7 @@ body {
   z-index: -1;
 }
 .btn:hover {
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.3);
   transform: translateY(-0.5rem);
 }
 .btn:hover::after {
@@ -133,7 +140,7 @@ body {
 }
 .btn:active {
   transform: translateY(-0.1rem);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.1);
   outline: none;
 }
 
@@ -142,41 +149,58 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media only screen and (max-width: 37.5em) {
+  .form {
+    flex-direction: column;
+  }
+}
+.form__group {
+  padding-top: 1rem;
+}
 .form__group:not(:last-child) {
-  padding-right: 2rem;
+  margin-right: 2rem;
 }
 .form__label {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-left: 2rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: #34ace0;
+  font-weight: 400;
+  margin-top: 1rem;
+  padding-right: 2rem;
   display: block;
   transition: all 0.5s;
 }
 .form__label:hover {
   transform: scale(1.05);
 }
+@media only screen and (max-width: 37.5em) {
+  .form__label {
+    font-size: 2.4rem;
+  }
+}
 .form__input {
   font-family: inherit;
-  color: inherit;
+  color: #227093;
   border: none;
   display: block;
-  border-bottom: 3px solid #4E8D7C;
-  font-size: 1.3rem;
+  border-bottom: 3px solid #ff793f;
+  font-size: 1.6rem;
   padding: 1.5rem;
-  background-color: #A9D6CA;
+  background-color: #ffb142;
   border-radius: 10rem;
-  margin-bottom: -1rem;
   transition: all 0.5s;
 }
+.form__input::placeholder {
+  color: #227093;
+  opacity: 1;
+}
 .form__input:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  font-weight: bolder;
 }
 .form__input:focus {
   outline: none;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
-  border-bottom: 3px solid #4E8D7C;
+  box-shadow: 0 1rem 3rem rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid #ff793f;
 }
 .form__input:placeholder-shown + .form__label {
   opacity: 0;
@@ -186,17 +210,78 @@ body {
 .form__select {
   position: relative;
   padding: 1.5rem 3rem;
-  width: 20rem;
-  height: 5rem;
   font-family: inherit;
 }
-.form__select__option {
-  font-size: 1rem;
-  transition: all 0.5s;
-  font-style: normal;
+.form__select__label {
+  text-align: center;
 }
-.form__select:focus .form__select__option {
-  font-style: normal;
+@media only screen and (max-width: 37.5em) {
+  .form__select__label {
+    margin-bottom: 2rem;
+  }
+}
+.form__checkbox {
+  position: relative;
+  width: 3.4rem;
+  height: 8rem;
+  display: flex;
+}
+.form__checkbox__input:checked + .form__checkbox__label {
+  background-color: #EA97AD;
+}
+.form__checkbox__input:focus + .form__checkbox__label {
+  box-shadow: 0 0 1px #34ace0;
+}
+.form__checkbox__input:checked + .form__checkbox__label::before {
+  transform: translateY(-3.5rem);
+  background-color: #84817a;
+}
+.form__checkbox__input {
+  display: none;
+}
+@media only screen and (max-width: 37.5em) {
+  .form__checkbox {
+    display: block;
+  }
+}
+.form__checkbox__span {
+  color: #f7f1e3;
+  margin-top: 8rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .form__checkbox__span {
+    font-size: 2.4rem;
+    margin-left: 5rem;
+    margin-top: 0rem;
+    display: block;
+  }
+}
+.form__checkbox__label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f7f1e3;
+  transition: 0.4s;
+  border-radius: 3.4rem;
+}
+.form__checkbox__label::before {
+  position: absolute;
+  content: "";
+  height: 2.6rem;
+  width: 2.6rem;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  background-image: linear-gradient(rgba(52, 172, 224, 0.6), rgba(33, 140, 116, 0.6));
+  transition: 0.4s;
+  border-radius: 50%;
+}
+@media only screen and (max-width: 37.5em) {
+  .form__btn {
+    margin-top: 3rem;
+  }
 }
 
 .recipe {
@@ -204,18 +289,53 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.recipe__img-container {
-  max-height: 25rem;
-  max-width: 25rem;
-  border-radius: 50%;
-  overflow: hidden;
+.recipe__name {
+  margin-top: 15rem;
+  color: #84817a;
+  background-color: rgba(247, 241, 227, 0.7);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+  width: 35%;
+  border-radius: 3rem;
+  padding: 1rem 2rem;
 }
-.recipe__img {
-  max-height: 25rem;
-  transition: all 6s ease-out;
+@media only screen and (max-width: 56.25em) {
+  .recipe__name {
+    margin-top: 10rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .recipe__name {
+    width: 50%;
+  }
+}
+.recipe .heading-2 {
+  color: #d1ccc0;
+}
+.recipe__ingredients {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 50%;
+  padding: 2rem;
+  border-radius: 3rem;
+  background-color: rgba(247, 241, 227, 0.7);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+  list-style: none;
+}
+@media only screen and (max-width: 56.25em) {
+  .recipe__ingredients {
+    width: 80%;
+  }
 }
 .recipe__ingredients__ing {
-  font-size: 1.5rem;
+  color: #000;
+  padding-bottom: 0.5rem;
+  opacity: 0.8;
+  transition: all 3s ease-in-out;
+  font-size: 1.6rem;
+}
+.recipe__ingredients__ing:last-child {
+  padding-bottom: 2rem;
 }
 .recipe__ingredients__ing--name {
   padding-bottom: 2rem;
@@ -224,30 +344,62 @@ body {
 .recipe__ingredients__ing--qt {
   padding-right: 1rem;
 }
+.recipe__ingredients__ing:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
 .recipe__prep {
   text-align: left;
   margin: 0 auto;
-  padding: 0 15rem;
+  padding: 0 1rem;
+  color: #000;
+  border-radius: 3rem;
+  background-color: rgba(247, 241, 227, 0.7);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
   list-style: none;
   counter-reset: prep-counter;
 }
 .recipe__prep__item {
+  font-size: 1.6rem;
   counter-increment: prep-counter;
 }
 .recipe__prep__item::before {
   content: counter(prep-counter);
   font-family: "Kanit", sans-serif;
   font-size: 5rem;
-  color: #B5B57D;
+  color: #cc8e35;
 }
 .recipe:hover .recipe__img {
   transform: scale(1.2);
 }
 
+.header {
+  position: absolute;
+  top: 5rem;
+  left: 1rem;
+  font-size: 1.2rem;
+  color: #f7f1e3;
+  background-color: #84817a;
+  border: 2px solid #aaa69d;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+.header__copyright {
+  margin: 0 auto;
+}
+.header__credit {
+  margin: 0 auto;
+}
+
 .index__background-img {
   position: relative;
   height: 100vh;
-  background-image: linear-gradient(to bottom right, rgba(242, 242, 230, 0.75), rgba(181, 181, 125, 0.75)), url(../img/pizza.jpg);
+  background-image: linear-gradient(to bottom right, rgba(14, 75, 61, 0.75), rgba(0, 0, 0, 0.75)), url(../img/pizza.jpg);
   background-size: cover;
 }
 .index__display {
@@ -271,11 +423,19 @@ body {
   opacity: 0;
 }
 .index__display .form__group:nth-of-type(3) {
+  animation: 1s fadeInFromBottom 0.5s ease-in forwards;
+  opacity: 0;
+}
+.index__display .form__group:nth-of-type(4) {
   animation: 1s fadeInFromRight 0.5s ease-in forwards;
   opacity: 0;
 }
-.index__display .footer {
-  transform: translateY(15rem);
+
+.recipe {
+  margin-top: auto;
+  position: relative;
+  height: 100%;
+  background-size: cover;
 }
 
 .aside {
@@ -283,6 +443,7 @@ body {
 }
 .aside .heading-2 {
   text-align: center;
+  margin: 2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

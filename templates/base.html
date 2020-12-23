@@ -2,12 +2,20 @@
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="{{url_for('static', filename='icon/favicon.ico')}}" />
         <link rel="preconnect" href="https://fonts.gstatic.com"> 
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     </head>
     <body>
+        <header class="header">
+            <p class="header__copyright">&copy; 2020 by Benyakir Horowitz. All rights reserved.</p>
+            <p class="header__credit">Credit for background image: unsplash.com</p>
+            <p class="header__credit">Icon design thanks to favicon.io</p>
+        </header>
         {% block content %}
         {% endblock %}
     <script src="{{url_for('static', filename='script/scripts.js')}}"></script>

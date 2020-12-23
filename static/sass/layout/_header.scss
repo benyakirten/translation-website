@@ -1,0 +1,25 @@
+.header {
+    position: absolute;
+    top: 5rem;
+    left: 1rem;
+    font-size: $font-size-small;
+    color: $color-gray-light-1;
+    background-color: $color-gray-dark-2;
+    border: 2px solid $color-gray-dark-1;
+    box-shadow: $shadow-normal;
+    font-weight: 700;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+
+    &__copyright {
+        margin: 0 auto;  
+    }
+
+    &__credit {
+        margin: 0 auto;
+    }
+}

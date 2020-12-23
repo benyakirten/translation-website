@@ -5,11 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<main class="recipe">
-    <h1 class="heading-1">{{ title }}</h1>
-    <div class="recipe__img-container">
-        <img class="recipe__img" src="{{ image }}" alt="{{ title }}">
-    </div>
+<main class="recipe" style="background-image: linear-gradient(to bottom right, rgba(14, 75, 61, 0.75), rgba(0, 0, 0, 0.75)), url({{ image }})">
+    <h1 class="heading-1 recipe__name">{{ title }}</h1>
     <h2 class="heading-2">Ingredients</h2>
     <ul class="recipe__ingredients">
         {% for ingredient in ingredients %}
@@ -28,31 +25,49 @@
             <li class="recipe__prep__item">{{ step }}</li>
         {% endfor %}
     </ul>
+    <aside class="aside">
+        <h2 class="heading-2">Translate another recipe</h1>
+        <form method="post" class="form">
+            <div class=form__group>
+                <input
+                    type="text"
+                    name="url"
+                    id="url"
+                    class="form__input"
+                    placeholder="Insert a URL"
+                    required
+                >
+                <label class="form__label form__input__label" for="url">Recipe URL</label>
+            </div>
+            <div class="form__group">
+                <select name="site" id="site" class="form__select">
+                    <option class="form__select__option" value="gz">Giallo Zafferano</option>
+                    <option class="form__select__option" value="fc">Fatto in Casa</option>
+                </select>
+                <label for="site" class="form__label form__select__label">Website</label>
+            </div>
+            <div class="form__group form__checkbox">
+                <input
+                    type="checkbox"
+                    name="convert"
+                    id="convert"
+                    class="form__checkbox__input"
+                    checked
+                    aria-lablledby="checkbox__label"
+                >
+                <label
+                    for="convert"
+                    class="form__label form__checkbox__label"
+                ></label>
+                <span
+                    class="form__checkbox__span"
+                    id="checkbox__label"
+                >Convert units</span>
+            </div>
+            <div class="form__group">
+                <button type="submit" class="btn form__btn">Go &rarr;</button>
+            </div>
+        </form>
+    </aside>
 </main>
-<aside class="aside">
-    <h2 class="heading-2">Translate a recipe from Italian to English</h1>
-    <form method="post" class="form">
-        <div class=form__group>
-            <input
-                type="text"
-                name="url"
-                id="url"
-                class="form__input"
-                placeholder="Insert a URL"
-                required
-            >
-            <label class="form__label" for="url">Recipe URL:</label>
-        </div>
-        <div class="form__group">
-            <select name="site" id="site" class="form__select">
-                <option class="form__select__option" value="gz">Giallo Zafferano</option>
-                <option class="form__select__option" value="fdc">Fatto in Casa</option>
-            </select>
-            <label for="site" class="form__label">Website</label>
-        </div>
-        <div class="form__group">
-            <button type="submit" class="btn form__btn">Submit &rarr;</button>
-        </div>
-    </form>
-</aside>
 {% endblock %}

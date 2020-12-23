@@ -1,0 +1,155 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include respond(phone) {
+        flex-direction: column;
+    }
+
+    &__group {
+        padding-top: 1rem;
+        &:not(:last-child) {
+            margin-right: 2rem;
+        }
+    }
+    &__label {
+        font-size: $font-size-normal;
+        color: $color-blue;
+        font-weight: 400;
+        margin-top: 1rem;
+        padding-right: 2rem;
+
+        display: block;
+        transition: all .5s;
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        @include respond(phone) {
+            font-size: $font-size-large;
+        }
+    }
+    &__input {
+        font-family: inherit;
+        color: $color-blue-dark;
+        border: none;
+        display: block;
+        border-bottom: 3px solid $color-primary;
+        font-size: $font-size-normal;
+        padding: 1.5rem;
+        background-color: $color-orange;
+        border-radius: 10rem;
+
+        &::placeholder {
+            color: $color-blue-dark;
+            opacity: 1;
+        }
+
+        transition: all .5s;
+        &:hover {
+            transform: scale(1.1);
+            font-weight: bolder;
+        }
+        &:focus {
+            outline: none;
+            box-shadow: 0 1rem 3rem rgba(#fff, .2);
+            border-bottom: 3px solid $color-primary;
+        }
+    }
+
+    &__input:placeholder-shown + &__label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    }
+
+    &__select {
+        position: relative;
+        padding: 1.5rem 3rem;
+        font-family: inherit;
+        
+        &__label {
+            text-align: center;
+        }
+
+        @include respond(phone) {
+            &__label {
+                margin-bottom: 2rem;
+            }
+        }
+    }
+
+    &__checkbox {
+        position: relative;
+        width: 3.4rem;
+        height: 8rem;
+        display: flex;
+
+        &__input:checked+&__label {
+            background-color: $color-pink;
+        }
+
+        &__input:focus+&__label {
+            box-shadow: 0 0 1px $color-blue;
+        }
+
+        &__input:checked+&__label::before {
+            transform: translateY(-3.5rem);
+            background-color: $color-gray-dark-2;
+        }
+
+        &__input {
+            display: none;
+        }
+
+        @include respond(phone) {
+            display: block;
+        }
+
+        &__span {
+            color: $color-gray-light-1;
+            margin-top: 8rem;
+
+            @include respond(phone) {
+                font-size: $font-size-large;
+                margin-left: 5rem;
+                margin-top: 0rem;
+                display: block;
+            }
+        }
+
+        &__label {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: $color-gray-light-1;
+            transition: .4s;
+            border-radius: 3.4rem;
+
+            &::before {
+                position: absolute;
+                content: "";
+                height: 2.6rem;
+                width: 2.6rem;
+                left: .4rem;
+                bottom: .4rem;
+                background-image: linear-gradient(
+                    rgba($color-blue, .6),
+                    rgba($color-green-dark, .6)
+                );
+                transition: .4s;
+                border-radius: 50%;
+            }
+        }
+    }
+    &__btn {
+        @include respond(phone) {
+            margin-top: 3rem;
+        }
+    }
+
+}

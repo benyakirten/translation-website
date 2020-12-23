@@ -1,0 +1,18 @@
+body {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.heading-1 {
+    font-size: $font-size-large;
+    color: $color-gray-light-2;
+    display: block;
+}
+
+.heading-2 {
+    margin: 4rem;
+    font-size: $font-size-normal;
+    color: $color-gray-light-2;
+    display: block;
+}

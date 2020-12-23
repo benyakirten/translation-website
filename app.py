@@ -6,10 +6,12 @@ app = Flask(__name__, instance_relative_config=True)
 @app.route('/', methods = ('GET', 'POST'))
 def welcome():
     if request.method == 'POST':
+        convert_units = request.form['convert']
         if request.form['site'] == 'gz':
-            recipe = r2api.GZConverter(request.form['url'])
-        elif request.form['site'] == 'fdc':
-            recipe = r2api.FCConverter(request.form['url'])
+            recipe = r2api.GZConverter(request.form['url'], convert_units=convert_units)
+        elif request.form['site'] == 'fc':
+            recipe = r2api.FCConverter(request.form['url'], convert_units=convert_units)
+        
         trans_recipe = r2api.translate_data(recipe)
 
         # To not have display empty units in the output
