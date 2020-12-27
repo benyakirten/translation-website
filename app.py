@@ -6,7 +6,12 @@ app = Flask(__name__, instance_relative_config=True)
 @app.route('/', methods = ('GET', 'POST'))
 def welcome():
     if request.method == 'POST':
-        convert_units = request.form['convert']
+        try:
+            if request.form['convert']:
+                convert_units = True
+        except:
+            convert_units = False
+
         if request.form['site'] == 'gz':
             recipe = r2api.GZConverter(request.form['url'], convert_units=convert_units)
         elif request.form['site'] == 'fc':

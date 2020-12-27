@@ -40,4 +40,4 @@ Or, if you want to do it continuously:
 It's a browser problem. You need to empty the cache or configure Flask to refresh them. Or, if you're too lazy for that, copy the source HTML to a static file, direct it to the appropriate CSS file and then work on from there.
 
 ### Are you going to add features?
-Not really as of now, besides making it look less garish. I plan on adding a checkbox if you don't want to convert the units. At that point, it'd probably be easier just to use translate.google.com, but you may prefer the look of this or lack of ads. It's planned for the future, but I have a lot of responsibilities.
+Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and sharing the repository of a site I had already made.

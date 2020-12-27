@@ -38,6 +38,7 @@
         border-bottom: 3px solid $color-primary;
         font-size: $font-size-normal;
         padding: 1.5rem;
+        margin-right: 1rem;
         background-color: $color-orange;
         border-radius: 10rem;
 
@@ -48,8 +49,7 @@
 
         transition: all .5s;
         &:hover {
-            transform: scale(1.1);
-            font-weight: bolder;
+            transform: scale(1.05);
         }
         &:focus {
             outline: none;
@@ -87,7 +87,7 @@
         display: flex;
 
         &__input:checked+&__label {
-            background-color: $color-pink;
+            background-color: $color-blue-dark;
         }
 
         &__input:focus+&__label {
