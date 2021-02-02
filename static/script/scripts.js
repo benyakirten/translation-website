@@ -10,10 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     input.addEventListener('input', e => {
-        if (e.target.value.includes("giallozafferano")) {
+        if (e.target.value.includes("ricette.giallozafferano")) {
             website.value = 'gz';
         } else if (e.target.value.includes("fattoincasa")) {
             website.value = 'fc';
+        } else if (e.target.value.includes("mollichedizucchero")) {
+            website.value = 'mz';
         }
     });
+
+    input.focus();
 });

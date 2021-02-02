@@ -37,7 +37,7 @@ Or, if you want to do it continuously:
     sass sass/main.scss css/style.css --watch
 
 ### Hey, wait! The CSS isn't updating.
-It's a browser problem. You need to empty the cache or configure Flask to refresh them. Or, if you're too lazy for that, copy the source HTML to a static file, direct it to the appropriate CSS file and then work on from there.
+It's a browser problem, but it should already be fixed with the app config. But you might need to empty the cache or configure Flask to refresh them more explicitly than I did. Or, if you're too lazy for that, copy the source HTML to a static file, direct it to the appropriate CSS file and then work on from there.
 
 ### Are you going to add features?
-Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and sharing the repository of a site I had already made.
+Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and to use a pip package that I'd made. But I do have future plans to design my own icon and maybe something for the backsplash.

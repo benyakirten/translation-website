@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request
 import r2api
 
 app = Flask(__name__, instance_relative_config=True)
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 @app.route('/', methods = ('GET', 'POST'))
 def welcome():
@@ -16,6 +17,8 @@ def welcome():
             recipe = r2api.GZConverter(request.form['url'], convert_units=convert_units)
         elif request.form['site'] == 'fc':
             recipe = r2api.FCConverter(request.form['url'], convert_units=convert_units)
+        elif request.form['site'] == 'mz':
+            recipe = r2api.MZConverter(request.form['url'], convert_units=convert_units)
         
         trans_recipe = r2api.translate_data(recipe)
 
