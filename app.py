@@ -22,8 +22,13 @@ def welcome():
         
         trans_recipe = r2api.translate_data(recipe)
 
-        # To not have display empty units in the output
+        # To not have display empty units/quantities in the output
+        # N.B.: Though it didn't come up before, with the addition of the MZConverter
+        # quantities can be n/a too and therefore need to be removed too
         for idx in range(len(trans_recipe['ingredients'])):
+            if trans_recipe['ingredients'][idx][1] == 'n/a':
+                del trans_recipe['ingredients'][idx][1]
+                continue
             if trans_recipe['ingredients'][idx][2] == 'n/a':
                 del trans_recipe['ingredients'][idx][2]
         

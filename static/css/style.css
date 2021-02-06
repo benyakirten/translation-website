@@ -317,6 +317,8 @@ body {
   position: relative;
   width: 50%;
   padding: 2rem;
+  padding-left: 3rem;
+  padding-bottom: 1rem;
   border-radius: 3rem;
   background-color: rgba(247, 241, 227, 0.7);
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
@@ -334,8 +336,8 @@ body {
   transition: all 3s ease-in-out;
   font-size: 1.6rem;
 }
-.recipe__ingredients__ing:last-child {
-  padding-bottom: 2rem;
+.recipe__ingredients__ing::before {
+  content: "1";
 }
 .recipe__ingredients__ing--name {
   padding-bottom: 2rem;
@@ -345,13 +347,15 @@ body {
   padding-right: 1rem;
 }
 .recipe__ingredients__ing:hover {
-  transform: scale(1.05);
+  transform: scale(1.2);
+  transform-origin: 0 0;
   opacity: 1;
 }
 .recipe__prep {
   text-align: left;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
   color: #000;
   border-radius: 3rem;
   background-color: rgba(247, 241, 227, 0.7);
@@ -367,9 +371,6 @@ body {
   content: counter(prep-counter);
   font-size: 5rem;
   color: #cc8e35;
-}
-.recipe:hover .recipe__img {
-  transform: scale(1.2);
 }
 
 .header {
