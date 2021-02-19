@@ -19,6 +19,8 @@ def welcome():
             recipe = r2api.FCConverter(request.form['url'], convert_units=convert_units)
         elif request.form['site'] == 'mz':
             recipe = r2api.MZConverter(request.form['url'], convert_units=convert_units)
+        elif request.form['site'] == 'ag':
+            recipe = r2api.AGConverter(request.form['url'], convert_units=convert_units)
         
         trans_recipe = r2api.translate_data(recipe)
 

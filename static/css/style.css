@@ -336,9 +336,6 @@ body {
   transition: all 3s ease-in-out;
   font-size: 1.6rem;
 }
-.recipe__ingredients__ing::before {
-  content: "1";
-}
 .recipe__ingredients__ing--name {
   padding-bottom: 2rem;
   padding-right: 1rem;

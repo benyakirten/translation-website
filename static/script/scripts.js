@@ -16,8 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
             website.value = 'fc';
         } else if (e.target.value.includes("mollichedizucchero")) {
             website.value = 'mz';
+        } else if (e.target.value.includes("allacciateilgrembiule")) {
+            website.value = 'ag';
         }
     });
-
-    input.focus();
+    // I would like to make this more scalable, but for my two-page app, this is enough
+    if (document.querySelector("title").includes("Translate a recipe")) {
+        input.focus();
+    }
 });

@@ -41,3 +41,12 @@ It's a browser problem, but it should already be fixed with the app config. But 
 
 ### Are you going to add features?
 Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and to use a pip package that I'd made. But I do have future plans to design my own icon and maybe something for the backsplash.
+
+### Things to add:
+1. Checkbox or button to change to remove all formatting from the page
+
+### Changelog:
+I'm only adding this beginning in February of 2021
+> 2/17/2021
+> 1. Bug fix: remove "1" in the before pseudoelement of the ingredients on the recipe screen (I accidentally left it in from working on the hover animation)
+> 2. Autofocus on input element only occurs on the first page

@@ -43,10 +43,6 @@
         }
 
         &__ing {
-            &::before {
-                content: "1";
-            }
-            
             color: #000;
             padding-bottom: 0.5rem;
             opacity: 0.8;
