@@ -47,6 +47,8 @@ Not really as of now, besides making it look less garish. But the point of this 
 
 ### Changelog:
 I'm only adding this beginning in February of 2021
-> 2/17/2021
+2/17/2021:
 > 1. Bug fix: remove "1" in the before pseudoelement of the ingredients on the recipe screen (I accidentally left it in from working on the hover animation)
 > 2. Autofocus on input element only occurs on the first page
+2/21/2021:
+> 1. Added the RM Converter. A plain text mode is forthcoming
