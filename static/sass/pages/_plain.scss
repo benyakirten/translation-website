@@ -1,0 +1,16 @@
+.plain-recipe{ 
+    &__aside {
+        &__span {
+            color: #000;
+            font-size: $font-size-small;
+        }
+        &__checkbox {
+            &__input {
+
+            }
+            &__label {
+                background-color: $color-green;
+            }
+        }
+    }
+}

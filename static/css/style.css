@@ -108,7 +108,7 @@ body {
 .btn {
   padding: 2rem 5rem;
   transition: all 0.2s;
-  border-radius: 5%;
+  border-radius: 3rem;
   position: relative;
   font-size: 1.6rem;
   border: none;
@@ -287,7 +287,10 @@ body {
 .recipe {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+}
+.recipe__container {
+  margin-left: 3rem;
 }
 .recipe__name {
   margin-top: 15rem;
@@ -315,10 +318,8 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 50%;
-  padding: 2rem;
-  padding-left: 3rem;
-  padding-bottom: 1rem;
+  max-width: 50%;
+  padding: 1rem 3rem;
   border-radius: 3rem;
   background-color: rgba(247, 241, 227, 0.7);
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
@@ -352,6 +353,7 @@ body {
   text-align: left;
   margin: 0 auto;
   padding: 1rem;
+  padding-right: 2rem;
   padding-bottom: 2rem;
   color: #000;
   border-radius: 3rem;
@@ -362,12 +364,32 @@ body {
 }
 .recipe__prep__item {
   font-size: 1.6rem;
+  padding: 0 3rem;
   counter-increment: prep-counter;
 }
 .recipe__prep__item::before {
   content: counter(prep-counter);
   font-size: 5rem;
   color: #cc8e35;
+}
+
+.plain-recipe {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
+  padding: 5rem;
+  font-size: 2.4rem;
+}
+.plain-recipe__heading {
+  color: #000;
+}
+.plain-recipe__ingredients {
+  display: flex;
+  flex-direction: column;
+}
+.plain-recipe__prep {
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -441,6 +463,14 @@ body {
 .aside .heading-2 {
   text-align: center;
   margin: 2rem;
+}
+
+.plain-recipe__aside__span {
+  color: #000;
+  font-size: 1.2rem;
+}
+.plain-recipe__aside__checkbox__label {
+  background-color: #33d9b2;
 }
 
 /*# sourceMappingURL=style.css.map */
