@@ -43,7 +43,10 @@ It's a browser problem, but it should already be fixed with the app config. But 
 Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and to use a pip package that I'd made. But I do have future plans to design my own icon and maybe something for the backsplash.
 
 ### Things to add:
-1. Checkbox or button to change to remove all formatting from the page
+1. Change background image on splash page to a SVG to reduce load times
+2. Change colors to be more harmonious
+3. Better layout of the flask app
+4. Make code more dry
 
 ### Changelog:
 I'm only adding this beginning in February of 2021
@@ -52,3 +55,8 @@ I'm only adding this beginning in February of 2021
 > 2. Autofocus on input element only occurs on the first page
 2/21/2021:
 > 1. Added the RM Converter. A plain text mode is forthcoming
+2/24/2021:
+> 1. Added a plain formatting possibility to reduce load times - no pictures, text in simple flex boxes
+> 2. Plain formatting and unit conversion choices will be stored in local storage and loaded appropriately
+> 3. Changed align-items from center to flex-start in normal-format recipe
+> 4. Added second JS file to initial page titled frontpage.js in order to autofocus the input element upon load

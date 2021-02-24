@@ -38,16 +38,36 @@ Translate a recipe
                     id="convert"
                     class="form__checkbox__input"
                     checked
-                    aria-lablledby="checkbox__label"
+                    aria-lablledby="checkbox-units__span"
                 >
                 <label
                     for="convert"
                     class="form__label form__checkbox__label"
+                    id="checkbox-units__label"
                 ></label>
                 <span
                     class="form__checkbox__span"
-                    id="checkbox__label"
+                    id="checkbox-units__span"
                 >Convert units</span>
+            </div>
+            <div class="form__group form__checkbox">
+                <input
+                    type="checkbox"
+                    name="simple"
+                    id="simple"
+                    class="form__checkbox__input"
+                    checked
+                    aria-lablledby="checkbox-simple-output__span"
+                >
+                <label
+                    for="simple"
+                    class="form__label form__checkbox__label"
+                    id="checkbox-simple-output__label"
+                ></label>
+                <span
+                    class="form__checkbox__span"
+                    id="checkbox-simple-output__span"
+                >Recipe formatted</span>
             </div>
             <div class="form__group">
                 <button type="submit" class="btn form__btn">Go &rarr;</button>
@@ -55,4 +75,5 @@ Translate a recipe
         </form>
     </div>
 </main>
+<script src="{{url_for('static', filename='script/frontpage.js')}}"></script>
 {% endblock %}

@@ -13,6 +13,12 @@ def welcome():
         except:
             convert_units = False
 
+        try:
+            if request.form['simple']:
+                recipe_format = "processed"
+        except:
+            recipe_format = "plain"
+
         if request.form['site'] == 'gz':
             recipe = r2api.GZConverter(request.form['url'], convert_units=convert_units)
         elif request.form['site'] == 'fc':
@@ -36,7 +42,7 @@ def welcome():
             if trans_recipe['ingredients'][idx][2] == 'n/a':
                 del trans_recipe['ingredients'][idx][2]
         
-        return render_template("processed.html",
+        return render_template(f"{recipe_format}.html",
             title = trans_recipe['name'],
             image = trans_recipe['image'],
             ingredients = trans_recipe['ingredients'],

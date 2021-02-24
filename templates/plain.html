@@ -5,31 +5,28 @@
 {% endblock %}
 
 {% block content %}
-<main class="recipe" style="background-image: linear-gradient(to bottom right, rgba(14, 75, 61, 0.75), rgba(0, 0, 0, 0.75)), url({{ image }})">
-    <div class="background-filter"></div>
-    <div class="recipe__container">
-        <h1 class="heading-1 recipe__name">{{ title }}</h1>
-        <h2 class="heading-2">Ingredients</h2>
-        <ul class="recipe__ingredients">
-            {% for ingredient in ingredients %}
-                <li class="recipe__ingredients__ing">
-                    <span class="recipe__ingredients__ing--name">{{ ingredient[0].capitalize() }}</span>
-                    <span class="recipe__ingredients__ing--qt">{{ ingredient[1] }} </span>
-                    {% if ingredients[2] is defined %}
-                        <span class="recipe__ingredients__ing--unit">{{ ingredient[2] }}</span>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-        <h2 class="heading-2 u-margin-bottom-sm ">Preparation</h2>
-        <ul class="recipe__prep">
-            {% for step in prep %}
-                <li class="recipe__prep__item">{{ step }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <aside class="aside">
-        <h2 class="heading-2">Translate another recipe</h1>
+<main class="plain-recipe">
+    <h1 class="heading-1 plain-recipe__heading plain-recipe__name">{{ title }}</h1>
+    <h2 class="heading-2 plain-recipe__heading">Ingredients</h2>
+    <ol class="plain-recipe__ingredients">
+        {% for ingredient in ingredients %}
+            <li class="plain-recipe__ingredients__ing">
+                <span class="plain-recipe__ingredients__ing--name">{{ ingredient[0].capitalize() }}</span>
+                <span class="plain-recipe__ingredients__ing--qt">{{ ingredient[1] }} </span>
+                {% if ingredients[2] is defined %}
+                    <span class="plain-recipe__ingredients__ing--unit">{{ ingredient[2] }}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+    <h2 class="heading-2 plain-recipe__heading u-margin-bottom-sm">Preparation</h2>
+    <ol class="plain-recipe__prep">
+        {% for step in prep %}
+            <li class="plain-recipe__prep__item">{{ step }}</li>
+        {% endfor %}
+    </ol>
+    <aside class="plain-recipe__aside">
+        <h2 class="plain-recipe__heading heading-2">Translate another recipe</h1>
         <form method="post" class="form">
             <div class=form__group>
                 <input
@@ -40,7 +37,7 @@
                     placeholder="Insert a URL"
                     required
                 >
-                <label class="form__label form__input__label" for="url">Recipe URL</label>
+                <label class="plain-recipe__heading form__label form__input__label" for="url">Recipe URL</label>
             </div>
             <div class="form__group">
                 <select name="site" id="site" class="form__select">
@@ -50,23 +47,23 @@
                     <option class="form__select__option" value="ag">Allacciate il Grembiule</option>
                     <option class="form__select__option" value="rm">Le Ricette di Max</option>
                 </select>
-                <label for="site" class="form__label form__select__label">Website</label>
+                <label for="site" class="plain-recipe__heading form__label form__select__label">Website</label>
             </div>
             <div class="form__group form__checkbox">
                 <input
                     type="checkbox"
                     name="convert"
                     id="convert"
-                    class="form__checkbox__input"
+                    class="form__checkbox__input plain-recipe__aside__checkbox__input"
                     checked
                     aria-lablledby="checkbox__label"
                 >
                 <label
                     for="convert"
-                    class="form__label form__checkbox__label"
+                    class="form__label form__checkbox__label plain-recipe__aside__checkbox__label"
                 ></label>
                 <span
-                    class="form__checkbox__span"
+                    class="form__checkbox__span plain-recipe__aside__span"
                     id="checkbox__label"
                 >Convert units</span>
             </div>
@@ -75,17 +72,17 @@
                     type="checkbox"
                     name="simple"
                     id="simple"
-                    class="form__checkbox__input"
+                    class="form__checkbox__input plain-recipe__aside__checkbox__input"
                     checked
                     aria-lablledby="checkbox-simple-output__span"
                 >
                 <label
                     for="simple"
-                    class="form__label form__checkbox__label"
+                    class="form__label form__checkbox__label plain-recipe__aside__checkbox__label"
                     id="checkbox-simple-output__label"
                 ></label>
                 <span
-                    class="form__checkbox__span"
+                    class="form__checkbox__span plain-recipe__aside__span"
                     id="checkbox-simple-output__span"
                 >Recipe formatted</span>
             </div>
