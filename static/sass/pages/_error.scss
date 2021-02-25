@@ -1,0 +1,24 @@
+.error {
+    margin: 20rem 5rem;
+    &__container {
+        background-color: rgba($color-blue-medium, 0.7);
+        box-shadow: $shadow-normal;
+        width: 100%;
+        border-radius: 3rem;
+        padding: 3rem;
+
+        &__image {
+            height: 8rem;
+            width: 8rem;
+        }
+    
+        &__message {
+            font-size: $font-size-large;
+        }
+
+        &__btn {
+            margin-top: 3rem;
+            width: 20%;
+        }
+    }
+}

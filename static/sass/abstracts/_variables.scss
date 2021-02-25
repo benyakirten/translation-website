@@ -1,5 +1,11 @@
 // COLORS
+$color-blue-light: #d0e8f2;
+$color-blue-medium: #79a3b1;
+$color-blue-dark: #456268;
+
+$color-white: #fff;
 $color-black: #000;
+$color-gray: #fcf8ec;
 
 $color-gray-light-1: #f7f1e3;
 $color-gray-light-2: #d1ccc0;
@@ -7,33 +13,15 @@ $color-gray-light-2: #d1ccc0;
 $color-gray-dark-1: #aaa69d;
 $color-gray-dark-2: #84817a;
 
-$color-green: #33d9b2;
-$color-green-dark: #218c74;
-
-$color-pink: #EA97AD;
-$color-pink-light: #F7CBD6;
-
-$color-blue: #34ace0;
-$color-blue-dark: #227093;
-
-$color-primary: #ff793f;
-$color-primary-dark: #cd6133;
-
-$color-orange: #ffb142;
-$color-orange-dark: #cc8e35;
-
-$color-red: #ff5252;
-$color-red-dark: #b33939;
-
-$color-purple: #706fd3;
-$color-purple-dark-1: #474787;
-$color-purple-dark-2: #40407a;
-$color-purple-dark-3: #2c2c54;
-
 // FONT-SIZE
 $font-size-large: 2.4rem;
 $font-size-normal: 1.6rem;
 $font-size-small: 1.2rem;
+
+// FONT-FAMILY
+$font-family-default: 'Cardo', serif;
+$font-family-serif: 'Shippori Mincho', serif;
+$font-family-sans: 'Poppins', sans-serif;
 
 // BOX-SHADOW
 $shadow-normal: 0 2rem 4rem rgba(#000, 0.4);

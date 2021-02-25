@@ -43,10 +43,7 @@ It's a browser problem, but it should already be fixed with the app config. But 
 Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and to use a pip package that I'd made. But I do have future plans to design my own icon and maybe something for the backsplash.
 
 ### Things to add:
-1. Change background image on splash page to a SVG to reduce load times
-2. Change colors to be more harmonious
-3. Better layout of the flask app
-4. Make code more dry
+1. Better layout of the flask app
 
 ### Changelog:
 I'm only adding this beginning in February of 2021
@@ -60,3 +57,11 @@ I'm only adding this beginning in February of 2021
 > 2. Plain formatting and unit conversion choices will be stored in local storage and loaded appropriately
 > 3. Changed align-items from center to flex-start in normal-format recipe
 > 4. Added second JS file to initial page titled frontpage.js in order to autofocus the input element upon load
+2/25/2021:
+> 1. Changed fonts to use a sans and a serif font (hey, I'm trying)
+> 2. Changed most colors (I'm not a designer!)
+> 3. All illustrations and photos are now of brands or made by me
+> 4. Made the checkboxes to slide left-right instead of top-bottom on smaller displays
+> 5. Added an error page
+> 6. Added an about page
+> 7. Added a topbar to navigate to the abovementioned page

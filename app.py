@@ -1,4 +1,12 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import (
+    Flask,
+    render_template,
+    redirect,
+    url_for,
+    request
+)
+from werkzeug.exceptions import HTTPException
+import re
 import r2api
 
 app = Flask(__name__, instance_relative_config=True)
@@ -32,6 +40,10 @@ def welcome():
         
         trans_recipe = r2api.translate_data(recipe)
 
+        # Provide a fallback image if the converter can't find a photo
+        if not re.search(r'\.\w+$', trans_recipe['image']):
+            trans_recipe['image'] = 'static/img/pizza.jpg'
+
         # To not have display empty units/quantities in the output
         # N.B.: Though it didn't come up before, with the addition of the MZConverter
         # quantities can be n/a too and therefore need to be removed too
@@ -48,7 +60,15 @@ def welcome():
             ingredients = trans_recipe['ingredients'],
             prep = trans_recipe['preparation']
         )
-    return render_template("index.html")
+    return render_template('index.html')
+
+@app.route("/about", methods = ['GET'])
+def about():
+    return render_template("about.html")
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    return render_template('error.html')
 
 if __name__ == '__main__':
     app.run(debug=False)

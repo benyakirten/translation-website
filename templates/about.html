@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% block title %} About {% endblock %} {% block
+content %}
+<main class="about">
+    <section class="about__page">
+        <div class="about__page__container">
+            <figure class="about__page__container__figure">
+                <img
+                    class="about__page__container__figure__img"
+                    src="{{url_for('static', filename='img/Portrait.jpg')}}"
+                    aria-labelledby="portrait-caption"
+                />
+                <figcaption
+                    class="about__page__container__figure__caption"
+                    id="portrait-caption"
+                >
+                    Benyakir Horowitz
+                </figcaption>
+            </figure>
+            <div class="about__page__container__text">
+                <p class="about__page__container__text__title">About Me</p>
+                <p class="about__page__container__text__para">
+                    I am a writer who's trying to get into programming. I'm
+                    fully fluent in Italian and can figure my way most romance
+                    languages. I am a member of Phi Beta Kappa and have degrees
+                    in Linguistics, Classics and <em>summa cum laude</em>
+                    in Italian. I lived in Italy for two years before moving
+                    back to Colorado.
+                </p>
+                <p class="about__page__container__text__title">
+                    About This Website
+                </p>
+                <p class="about__page__container__text__para">
+                    This page is an implementation of my r2api package to
+                    translate recipes and their units from Italian to English.
+                    Hopefully besides giving me practice with a bunch of uses of
+                    CSS and basic web design, people will be able to find the
+                    website useful.
+                </p>
+                <p class="about__page__container__text__title">
+                    Technologies Used
+                </p>
+                <p class="about__page__container__text__para">
+                    Flask, Sass,
+                    <a
+                        class="about__link about__link-r2api"
+                        href="https://pypi.org/project/r2api/"
+                        >r2api</a
+                    >, Javascript, a few simple illustrations (mostly image
+                    tracing)
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="about__links">
+        <div class="about__links__container">
+            <a
+                class="about__link about__link-github"
+                href="https://github.com/benyakirten"
+            >
+                <figure class="about__links__container__figure">
+                    <img
+                        class="about__links__container__figure__img about__links__container__figure__img-github"
+                        src="{{url_for('static', filename='img/Github.svg')}}"
+                        aria-labelledby="github-caption"
+                    />
+                    <figcaption
+                        class="about__links__container__figure__caption about__links__container__figure__caption-github"
+                        id="github-caption"
+                    >
+                        Github
+                    </figcaption>
+                </figure>
+            </a>
+            <a class="about__link about__link-twitter" href="https://twitter.com/benyakirten">
+                <figure class="about__links__container__figure">
+                    <img
+                        class="about__links__container__figure__img about__links__container__figure__img-twitter"
+                        src="{{url_for('static', filename='img/Twitter.svg')}}"
+                        aria-labelledby="twitter-caption"
+                    />
+                    <figcaption
+                        class="about__links__container__figure__caption about__links__container__figure__caption-twitter"
+                        id="twitter-caption"
+                    >
+                        Twitter
+                    </figcaption>
+                </figure>
+            </a>
+            <a class="about__link" href="https://benyakiredits.com">
+                <figure class="about__links__container__figure">
+                    <img
+                        class="about__links__container__figure__img about__links__container__figure__img-homepage"
+                        src="{{url_for('static', filename='img/Homepage.jpg')}}"
+                        aria-labelledby="website-caption"
+                    />
+                    <figcaption
+                        class="about__links__container__figure__caption about__links__container__figure__caption-homepage"
+                        id="website-caption"
+                    >
+                        Blog
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+    </section>
+    <section class="about__legal">
+        <p class="about__legal__copyright">
+            &copy; 2020-2021 by Benyakir Horowitz. All rights reserved.
+        </p>
+    </section>
+</main>
+{% endblock %}

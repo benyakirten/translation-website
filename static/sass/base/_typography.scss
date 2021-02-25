@@ -1,18 +1,20 @@
 body {
-    font-family: 'Cardo', serif;
+    font-family: $font-family-serif;
     font-weight: 400;
     line-height: 1.2;
 }
 
 .heading-1 {
+    font-family: $font-family-sans;
     font-size: $font-size-large;
-    color: $color-gray-light-2;
+    color: $color-gray;
     display: block;
 }
 
 .heading-2 {
+    font-family: $font-family-sans;
     margin: 4rem;
     font-size: $font-size-normal;
-    color: $color-gray-light-2;
+    color: $color-gray;
     display: block;
 }

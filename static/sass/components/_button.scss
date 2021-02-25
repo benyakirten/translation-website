@@ -6,13 +6,13 @@
     font-size: $font-size-normal;
     border: none;
     display: inline-block;
-    color: $color-blue-dark;
-    background-color: $color-orange;
+    color: $color-gray;
+    background-color: $color-blue-medium;
     cursor: pointer;
 
     &::after{
         content: "";
-        background-color: $color-orange;
+        background-color: $color-blue-medium;
         border-radius: 5%;
         transition: all .4s;
         position: absolute;
@@ -25,7 +25,7 @@
     }
 
     &:hover {
-        box-shadow: 0 1rem 2rem rgba(#fff, .3);
+        box-shadow: $shadow-normal;
         transform: translateY(-.5rem);
 
         &::after {
@@ -36,7 +36,7 @@
 
     &:active {
         transform: translateY(-.1rem);
-        box-shadow: 0 .5rem 1rem rgba(#fff, .1);
+        box-shadow: $shadow-normal;
         outline: none;
     }
 }

@@ -4,9 +4,9 @@
         height: 100vh;
         background-image: linear-gradient(
             to bottom right,
-            darken(rgba($color-green, 0.75), 35%),
-            darken(rgba($color-green-dark, 0.75), 40%)),
-        url(../img/pizza.jpg);
+            darken(rgba($color-blue-medium, 0.75), 35%),
+            darken(rgba($color-blue-dark, 0.35), 70%)),
+        url(../img/Background.svg);
         background-size: cover;
     }
     &__display {
@@ -31,6 +31,10 @@
             opacity: 0;
         }
         .form__group:nth-of-type(4) {
+            animation: 1s fadeInFromRight .5s ease-in forwards;
+            opacity: 0;
+        }
+        .form__group:nth-of-type(5) {
             animation: 1s fadeInFromRight .5s ease-in forwards;
             opacity: 0;
         }

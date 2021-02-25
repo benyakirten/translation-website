@@ -5,17 +5,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="{{url_for('static', filename='icon/favicon.ico')}}" />
-        <link rel="preconnect" href="https://fonts.gstatic.com"> 
-        <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.gstatic.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     </head>
     <body>
         <header class="header">
-            <p class="header__copyright">&copy; 2020-2021 by Benyakir Horowitz. All rights reserved.</p>
-            <p class="header__credit">Credit for background image: unsplash.com</p>
-            <p class="header__credit">Icon design thanks to favicon.io</p>
+            <div class="header__container">
+                <a class="header__link" href="/"><img class="header__link__logo" src="{{url_for('static', filename='img/Logo.svg')}}"></a>
+            </div>
+            <div class="header__container">
+                <a class="header__link" href="/">Index page</a>
+                <a class="header__link" href="/about">About page</a>
+            </div>
         </header>
         {% block content %}
         {% endblock %}

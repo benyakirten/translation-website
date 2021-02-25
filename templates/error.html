@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Something went wrong!
+{% endblock %}
+
+{% block content %}
+<main class="error">
+    <div class="error__container">
+        <div class="error__container__image">
+            IMAGE WILL GO HERE
+        </div>
+        <p class="error__container__message">
+            Something went wrong!
+            Please contact Ben (either email or on git) and tell him what recipe you tried.
+        </p>
+        <button class="btn error__container__btn">Go back &larr;</button>
+    </div>
+</main>
+<script src="{{url_for('static', filename='script/error.js')}}"></script>
+{% endblock %}

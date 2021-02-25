@@ -9,8 +9,10 @@
 
     &__name {
         margin-top: 15rem;
-        color: $color-gray-dark-2;
-        background-color: rgba($color-gray-light-1, 0.7);
+        color: $color-black;
+        font-family: $font-family-serif;
+        font-weight: lighter;
+        background-color: rgba($color-gray, 0.7);
         box-shadow: $shadow-normal;
         width: 35%;
         border-radius: 3rem;
@@ -26,7 +28,7 @@
     }
 
     .heading-2 {
-        color: $color-gray-light-2;
+        color: $color-gray;
     }
 
     &__ingredients {
@@ -36,7 +38,7 @@
         max-width: 50%;
         padding: 1rem 3rem;
         border-radius: 3rem;
-        background-color: rgba($color-gray-light-1, 0.7);
+        background-color: rgba($color-gray, 0.7);
         box-shadow: $shadow-normal;
         list-style: none;
 
@@ -63,6 +65,14 @@
                 transform: scale(1.2);
                 transform-origin: 0 0;
                 opacity: 1;
+
+                @include respond(phone) {
+                    transform: scale(1);
+                }
+            }
+
+            @include respond(phone) {
+                margin-top: 1rem;
             }
         }
     }
@@ -73,10 +83,10 @@
         padding: 1rem;
         padding-right: 2rem;
         padding-bottom: 2rem;
-        color: #000;
+        color: $color-black;
         border-radius: 3rem;
 
-        background-color: rgba($color-gray-light-1, 0.7);
+        background-color: rgba($color-gray, 0.7);
         box-shadow: $shadow-normal;
 
         list-style: none;
@@ -90,7 +100,7 @@
         &__item::before {
             content: counter(prep-counter);
             font-size: 5rem;
-            color: $color-orange-dark;
+            color: $color-blue-medium;
         }
     }
 }

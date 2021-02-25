@@ -16,7 +16,7 @@
     }
     &__label {
         font-size: $font-size-normal;
-        color: $color-blue;
+        color: $color-blue-medium;
         font-weight: 400;
         margin-top: 1rem;
         padding-right: 2rem;
@@ -36,11 +36,11 @@
         color: $color-blue-dark;
         border: none;
         display: block;
-        border-bottom: 3px solid $color-primary;
+        border-bottom: 3px solid $color-blue-medium;
         font-size: $font-size-normal;
         padding: 1.5rem;
         margin-right: 1rem;
-        background-color: $color-orange;
+        background-color: $color-blue-light;
         border-radius: 10rem;
 
         &::placeholder {
@@ -54,8 +54,8 @@
         }
         &:focus {
             outline: none;
-            box-shadow: 0 1rem 3rem rgba(#fff, .2);
-            border-bottom: 3px solid $color-primary;
+            box-shadow: 0 1rem 3rem rgba($color-white, .2);
+            border-bottom: 3px solid $color-blue-dark;
         }
     }
 
@@ -87,17 +87,28 @@
         height: 8rem;
         display: flex;
 
+        @include respond(phone) {
+            flex-direction: 'column';
+            width: 8rem;
+            height: 4.4rem;
+            margin-bottom: 2rem;
+        }
+
         &__input:checked+&__label {
             background-color: $color-blue-dark;
         }
 
         &__input:focus+&__label {
-            box-shadow: 0 0 1px $color-blue;
+            box-shadow: 0 0 1px $color-blue-medium;
         }
 
         &__input:checked+&__label::before {
             transform: translateY(-3.5rem);
             background-color: $color-gray-dark-2;
+
+            @include respond(phone) {
+                transform: translateX(4.5rem);
+            }
         }
 
         &__input {
@@ -109,13 +120,14 @@
         }
 
         &__span {
-            color: $color-gray-light-1;
+            color: $color-gray;
             margin-top: 8rem;
 
             @include respond(phone) {
-                font-size: $font-size-large;
-                margin-left: 5rem;
-                margin-top: 0rem;
+                font-size: $font-size-normal;
+                margin-left: 9rem;
+                margin-top: 0;
+                padding-bottom: 1rem;
                 display: block;
             }
         }
@@ -127,7 +139,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: $color-gray-light-1;
+            background-color: $color-gray;
             transition: .4s;
             border-radius: 3.4rem;
 
@@ -139,8 +151,8 @@
                 left: .4rem;
                 bottom: .4rem;
                 background-image: linear-gradient(
-                    rgba($color-blue, .6),
-                    rgba($color-green-dark, .6)
+                    rgba($color-blue-light, .6),
+                    rgba($color-blue-dark, .6)
                 );
                 transition: .4s;
                 border-radius: 50%;

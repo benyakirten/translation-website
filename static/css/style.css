@@ -79,25 +79,27 @@ html {
 
 body {
   box-sizing: border-box;
-  background-color: #f7f1e3;
+  background-color: #fcf8ec;
 }
 
 body {
-  font-family: "Cardo", serif;
+  font-family: "Shippori Mincho", serif;
   font-weight: 400;
   line-height: 1.2;
 }
 
 .heading-1 {
+  font-family: "Poppins", sans-serif;
   font-size: 2.4rem;
-  color: #d1ccc0;
+  color: #fcf8ec;
   display: block;
 }
 
 .heading-2 {
+  font-family: "Poppins", sans-serif;
   margin: 4rem;
   font-size: 1.6rem;
-  color: #d1ccc0;
+  color: #fcf8ec;
   display: block;
 }
 
@@ -113,13 +115,13 @@ body {
   font-size: 1.6rem;
   border: none;
   display: inline-block;
-  color: #227093;
-  background-color: #ffb142;
+  color: #fcf8ec;
+  background-color: #79a3b1;
   cursor: pointer;
 }
 .btn::after {
   content: "";
-  background-color: #ffb142;
+  background-color: #79a3b1;
   border-radius: 5%;
   transition: all 0.4s;
   position: absolute;
@@ -131,7 +133,7 @@ body {
   z-index: -1;
 }
 .btn:hover {
-  box-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
   transform: translateY(-0.5rem);
 }
 .btn:hover::after {
@@ -140,7 +142,7 @@ body {
 }
 .btn:active {
   transform: translateY(-0.1rem);
-  box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
   outline: none;
 }
 
@@ -162,7 +164,7 @@ body {
 }
 .form__label {
   font-size: 1.6rem;
-  color: #34ace0;
+  color: #79a3b1;
   font-weight: 400;
   margin-top: 1rem;
   padding-right: 2rem;
@@ -179,19 +181,19 @@ body {
 }
 .form__input {
   font-family: inherit;
-  color: #227093;
+  color: #456268;
   border: none;
   display: block;
-  border-bottom: 3px solid #ff793f;
+  border-bottom: 3px solid #79a3b1;
   font-size: 1.6rem;
   padding: 1.5rem;
   margin-right: 1rem;
-  background-color: #ffb142;
+  background-color: #d0e8f2;
   border-radius: 10rem;
   transition: all 0.5s;
 }
 .form__input::placeholder {
-  color: #227093;
+  color: #456268;
   opacity: 1;
 }
 .form__input:hover {
@@ -200,7 +202,7 @@ body {
 .form__input:focus {
   outline: none;
   box-shadow: 0 1rem 3rem rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid #ff793f;
+  border-bottom: 3px solid #456268;
 }
 .form__input:placeholder-shown + .form__label {
   opacity: 0;
@@ -226,15 +228,28 @@ body {
   height: 8rem;
   display: flex;
 }
+@media only screen and (max-width: 37.5em) {
+  .form__checkbox {
+    flex-direction: "column";
+    width: 8rem;
+    height: 4.4rem;
+    margin-bottom: 2rem;
+  }
+}
 .form__checkbox__input:checked + .form__checkbox__label {
-  background-color: #227093;
+  background-color: #456268;
 }
 .form__checkbox__input:focus + .form__checkbox__label {
-  box-shadow: 0 0 1px #34ace0;
+  box-shadow: 0 0 1px #79a3b1;
 }
 .form__checkbox__input:checked + .form__checkbox__label::before {
   transform: translateY(-3.5rem);
   background-color: #84817a;
+}
+@media only screen and (max-width: 37.5em) {
+  .form__checkbox__input:checked + .form__checkbox__label::before {
+    transform: translateX(4.5rem);
+  }
 }
 .form__checkbox__input {
   display: none;
@@ -245,14 +260,15 @@ body {
   }
 }
 .form__checkbox__span {
-  color: #f7f1e3;
+  color: #fcf8ec;
   margin-top: 8rem;
 }
 @media only screen and (max-width: 37.5em) {
   .form__checkbox__span {
-    font-size: 2.4rem;
-    margin-left: 5rem;
-    margin-top: 0rem;
+    font-size: 1.6rem;
+    margin-left: 9rem;
+    margin-top: 0;
+    padding-bottom: 1rem;
     display: block;
   }
 }
@@ -263,7 +279,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #f7f1e3;
+  background-color: #fcf8ec;
   transition: 0.4s;
   border-radius: 3.4rem;
 }
@@ -274,7 +290,7 @@ body {
   width: 2.6rem;
   left: 0.4rem;
   bottom: 0.4rem;
-  background-image: linear-gradient(rgba(52, 172, 224, 0.6), rgba(33, 140, 116, 0.6));
+  background-image: linear-gradient(rgba(208, 232, 242, 0.6), rgba(69, 98, 104, 0.6));
   transition: 0.4s;
   border-radius: 50%;
 }
@@ -294,8 +310,10 @@ body {
 }
 .recipe__name {
   margin-top: 15rem;
-  color: #84817a;
-  background-color: rgba(247, 241, 227, 0.7);
+  color: #000;
+  font-family: "Shippori Mincho", serif;
+  font-weight: lighter;
+  background-color: rgba(252, 248, 236, 0.7);
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
   width: 35%;
   border-radius: 3rem;
@@ -312,7 +330,7 @@ body {
   }
 }
 .recipe .heading-2 {
-  color: #d1ccc0;
+  color: #fcf8ec;
 }
 .recipe__ingredients {
   display: flex;
@@ -321,7 +339,7 @@ body {
   max-width: 50%;
   padding: 1rem 3rem;
   border-radius: 3rem;
-  background-color: rgba(247, 241, 227, 0.7);
+  background-color: rgba(252, 248, 236, 0.7);
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
   list-style: none;
 }
@@ -349,6 +367,16 @@ body {
   transform-origin: 0 0;
   opacity: 1;
 }
+@media only screen and (max-width: 37.5em) {
+  .recipe__ingredients__ing:hover {
+    transform: scale(1);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .recipe__ingredients__ing {
+    margin-top: 1rem;
+  }
+}
 .recipe__prep {
   text-align: left;
   margin: 0 auto;
@@ -357,7 +385,7 @@ body {
   padding-bottom: 2rem;
   color: #000;
   border-radius: 3rem;
-  background-color: rgba(247, 241, 227, 0.7);
+  background-color: rgba(252, 248, 236, 0.7);
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
   list-style: none;
   counter-reset: prep-counter;
@@ -370,7 +398,7 @@ body {
 .recipe__prep__item::before {
   content: counter(prep-counter);
   font-size: 5rem;
-  color: #cc8e35;
+  color: #79a3b1;
 }
 
 .plain-recipe {
@@ -393,32 +421,219 @@ body {
 }
 
 .header {
-  position: absolute;
-  top: 5rem;
-  left: 1rem;
-  font-size: 1.2rem;
-  color: #f7f1e3;
-  background-color: #84817a;
-  border: 2px solid #aaa69d;
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
-  font-weight: 700;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  height: 3.5rem;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+  margin-bottom: 0.5rem;
 }
-.header__copyright {
-  margin: 0 auto;
+.header__container {
+  display: flex;
 }
-.header__credit {
+.header__link {
+  margin-left: 1rem;
+  margin-right: 10rem;
+  text-decoration: none;
+  color: #000;
+}
+.header__link__logo {
+  height: 3rem;
+  width: 3rem;
+}
+
+.about {
+  padding: 5rem;
+}
+.about__link {
+  text-decoration: none;
+  color: #79a3b1;
+}
+.about__link:visited {
+  color: #79a3b1;
+}
+.about__page__container {
+  width: 75%;
+  height: 24rem;
   margin: 0 auto;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+  background-color: rgba(208, 232, 242, 0.6);
+  padding: 4rem;
+  transform: skewX(-12deg);
+}
+.about__page__container:hover .about__page__container__figure__caption {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+.about__page__container:hover .about__page__container__figure__img {
+  transform: scale(1);
+  filter: blur(0.3rem) brightness(80%) contrast(70%);
+}
+@media only screen and (max-width: 56.25em) {
+  .about__page__container {
+    height: 28rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .about__page__container {
+    height: 30rem;
+  }
+}
+.about__page__container__figure {
+  border-radius: 50%;
+  height: 15rem;
+  width: 15rem;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  transform: skewX(12deg);
+}
+@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+  .about__page__container__figure {
+    clip-path: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    border-radius: none;
+  }
+}
+.about__page__container__figure__img {
+  height: 100%;
+  transform: translateX(1rem) scale(1.3);
+  backface-visibility: hidden;
+  transition: all 0.5s;
+}
+.about__page__container__figure__caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.5s;
+  backface-visibility: hidden;
+}
+.about__page__container__text {
+  transform: translateX(1rem) skewX(12deg);
+  color: #456268;
+}
+@media only screen and (max-width: 37.5em) {
+  .about__page__container__text {
+    transform: translateX(2rem) skewX(12deg);
+  }
+}
+.about__page__container__text__title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  padding-bottom: 0.5rem;
+}
+.about__page__container__text__para {
+  font-family: "Shippori Mincho", serif;
+}
+.about__page__container__text__para:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.about__links {
+  margin: 5rem 0;
+}
+.about__links__container {
+  width: 75%;
+  height: 22rem;
+  margin: 0 auto;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+  background-color: rgba(208, 232, 242, 0.6);
+  padding: 4rem;
+  transform: skewX(-12deg);
+  display: flex;
+  justify-content: space-around;
+}
+@media only screen and (max-width: 56.25em) {
+  .about__links__container {
+    width: 100%;
+  }
+}
+.about__links__container__figure {
+  border-radius: 50%;
+  height: 15rem;
+  width: 15rem;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  transform: skewX(12deg);
+}
+.about__links__container__figure__img:hover + .about__links__container__figure__caption {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+.about__links__container__figure__img:hover {
+  transform: scale(1);
+  filter: blur(0.3rem) brightness(80%) contrast(70%);
+}
+.about__links__container__figure__img {
+  height: 100%;
+  transform: translateX(1rem) scale(1.3);
+  backface-visibility: hidden;
+  transition: all 0.5s;
+}
+.about__links__container__figure__img-github {
+  transform: translateX(0) scale(1.1);
+}
+.about__links__container__figure__img-twitter {
+  transform: scale(1.1);
+}
+.about__links__container__figure__caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.5s;
+  backface-visibility: hidden;
+}
+.about__links__container__figure__caption-homepage {
+  font-size: 1.2rem;
+}
+.about__links__container__figure__caption-github {
+  color: #79a3b1;
+}
+
+.error {
+  margin: 20rem 5rem;
+}
+.error__container {
+  background-color: rgba(121, 163, 177, 0.7);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.4);
+  width: 100%;
+  border-radius: 3rem;
+  padding: 3rem;
+}
+.error__container__image {
+  height: 8rem;
+  width: 8rem;
+}
+.error__container__message {
+  font-size: 2.4rem;
+}
+.error__container__btn {
+  margin-top: 3rem;
+  width: 20%;
 }
 
 .index__background-img {
   position: relative;
   height: 100vh;
-  background-image: linear-gradient(to bottom right, rgba(14, 75, 61, 0.75), rgba(0, 0, 0, 0.75)), url(../img/pizza.jpg);
+  background-image: linear-gradient(to bottom right, rgba(44, 68, 76, 0.75), rgba(0, 0, 0, 0.35)), url(../img/Background.svg);
   background-size: cover;
 }
 .index__display {
@@ -449,6 +664,10 @@ body {
   animation: 1s fadeInFromRight 0.5s ease-in forwards;
   opacity: 0;
 }
+.index__display .form__group:nth-of-type(5) {
+  animation: 1s fadeInFromRight 0.5s ease-in forwards;
+  opacity: 0;
+}
 
 .recipe {
   margin-top: auto;
@@ -470,7 +689,7 @@ body {
   font-size: 1.2rem;
 }
 .plain-recipe__aside__checkbox__label {
-  background-color: #33d9b2;
+  background-color: #d0e8f2;
 }
 
 /*# sourceMappingURL=style.css.map */
