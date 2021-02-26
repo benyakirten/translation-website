@@ -7,14 +7,17 @@ Something went wrong!
 {% block content %}
 <main class="error">
     <div class="error__container">
-        <div class="error__container__image">
-            IMAGE WILL GO HERE
+        <div class="error__container__images">
+            <img src="{{url_for('static', filename='img/error.svg')}}" class="error__container__image error__container__image-left">
+            <img src="{{url_for('static', filename='img/error.svg')}}" class="error__container__image error__container__image-right">
         </div>
         <p class="error__container__message">
             Something went wrong!
-            Please contact Ben (either email or on git) and tell him what recipe you tried.
+            Please contact Ben (either email or on
+            <a class="error__link" href="https://github.com/benyakirten">Github</a>)
+            and tell him what happened and/or the recipe you tried.
         </p>
-        <button class="btn error__container__btn">Go back &larr;</button>
+        <button class="btn btn-error">Go back &larr;</button>
     </div>
 </main>
 <script src="{{url_for('static', filename='script/error.js')}}"></script>

@@ -1,5 +1,14 @@
 .error {
     margin: 20rem 5rem;
+
+    &__link {
+        color: $color-blue-dark;
+        text-decoration: none;
+        &:visited {
+            color: $color-blue-dark;
+        }
+    }
+
     &__container {
         background-color: rgba($color-blue-medium, 0.7);
         box-shadow: $shadow-normal;
@@ -7,17 +16,36 @@
         border-radius: 3rem;
         padding: 3rem;
 
+        &__images {
+            display: flex;
+            justify-content: space-between;
+        }
+
         &__image {
             height: 8rem;
             width: 8rem;
+
+            &-left {
+                animation: rotateRightThenReturn 2s infinite;
+                @include respond(phone) {
+                    animation: phoneRotateRight 2s infinite;
+                }
+            }
+
+            &-right {
+                animation: rotateLeftThenReturn 2s infinite;
+                @include respond(phone) {
+                    animation: phoneRotateLeft 2s infinite;
+                }
+            }
         }
     
         &__message {
             font-size: $font-size-large;
+            margin-bottom: 3rem;
         }
 
         &__btn {
-            margin-top: 3rem;
             width: 20%;
         }
     }

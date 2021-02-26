@@ -42,7 +42,7 @@ def welcome():
 
         # Provide a fallback image if the converter can't find a photo
         if not re.search(r'\.\w+$', trans_recipe['image']):
-            trans_recipe['image'] = 'static/img/pizza.jpg'
+            trans_recipe['image'] = 'static/img/Background.svg'
 
         # To not have display empty units/quantities in the output
         # N.B.: Though it didn't come up before, with the addition of the MZConverter

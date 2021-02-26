@@ -55,3 +55,39 @@
         transform: translateY(0);
     }
 }
+
+@keyframes rotateRightThenReturn {
+    50% {
+        transform: translateX(60rem) rotate(360deg);
+    }
+    100% {
+        transform: translateX(0rem) rotate(0deg);
+    }
+}
+
+@keyframes rotateLeftThenReturn {
+    50% {
+        transform: translateX(-60rem) rotate(360deg);
+    }
+    100% {
+        transform: translateX(0rem) rotate(0deg);
+    }
+}
+
+@keyframes phoneRotateRight {
+    50% {
+        transform: translateX(20rem) rotate(360deg);
+    }
+    100% {
+        transform: translateX(0rem) rotate(0deg);
+    }
+}
+
+@keyframes phoneRotateLeft {
+    50% {
+        transform: translateX(-20rem) rotate(360deg);
+    }
+    100% {
+        transform: translateX(0rem) rotate(0deg);
+    }
+}

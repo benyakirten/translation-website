@@ -65,3 +65,6 @@ I'm only adding this beginning in February of 2021
 > 5. Added an error page
 > 6. Added an about page
 > 7. Added a topbar to navigate to the abovementioned page
+2/25/2021 (hotfix/update):
+> 1. Changed formatting for mobile on the about page
+> 2. Fixed up the error page -- yeah, I'd forgotten about finishing it
