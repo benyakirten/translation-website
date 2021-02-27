@@ -42,11 +42,18 @@ It's a browser problem, but it should already be fixed with the app config. But 
 ### Are you going to add features?
 Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and to use a pip package that I'd made. But I do have future plans to design my own icon and maybe something for the backsplash.
 
-### Things to add:
+### API Requests (recipe as plain JSON):
+The website accept POST requests made to the /api URL and returns the recipe as a JSON object. The parameters it accepts are below:
+1. url -- NECESSARY: this is the url of the recipe you are attempting to translate
+2. converter -- OPTIONAL (default: the appropriate type of converter will be guessed at using the same method as the form on the website): the type of converter to be used. Accepted values are: gz, fc, mz, ag, rm
+3. convertUnits -- OPTIONAL (default: True): this is if you want the units converted from metric to imperial. Values of true, True, yes, 1, y will set the convert_units property to True. All others will set the property to False.
+4. translate -- OPTIONAL (default: True): if you want the recipe translated to English. Values of true, True, yes, 1, y will set the convert_units property to True. All others will set the property to False.
+
+### Future changes:
 1. Better layout of the flask app
 
 ### Changelog:
-I'm only adding this beginning in February of 2021
+These have only been tracked since February 2021:
 2/17/2021:
 > 1. Bug fix: remove "1" in the before pseudoelement of the ingredients on the recipe screen (I accidentally left it in from working on the hover animation)
 > 2. Autofocus on input element only occurs on the first page
@@ -68,3 +75,9 @@ I'm only adding this beginning in February of 2021
 2/25/2021 (hotfix/update):
 > 1. Changed formatting for mobile on the about page
 > 2. Fixed up the error page -- yeah, I'd forgotten about finishing it
+2/26/2021:
+> 1. I know, too many commits/changes in too quick of a time. I keep noticing small things that somehow eluded my attention before. This should be the last update for awhile unless I also update r2api.
+> 2. Made it so on the first time loading the page, the text doesn't read as undefined
+> 3. Added text underneath the link pictures on the About page for phone displays (since they cannot hover elements)
+> 4. Added a few fun hover animations for the main bar
+> 5. Added an API route for retrieving the data as JSON. Details of how to use it are above under API Requests.

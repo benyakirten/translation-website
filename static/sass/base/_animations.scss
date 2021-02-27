@@ -91,3 +91,12 @@
         transform: translateX(0rem) rotate(0deg);
     }
 }
+
+@keyframes tipsy {
+    33% {
+        transform: rotate(-30deg);
+    }
+    66% {
+        transform: rotate(30deg);
+    }
+}

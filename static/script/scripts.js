@@ -110,8 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function initCheckbox(status, checkbox, span, textArray) {
         // Using the local storage value,
         // set the checked and the text to the appropriate values
-        checkbox.checked = status;
-        span.innerText = textArray[status];
+        if (status != null) {
+            checkbox.checked = status;
+            span.innerText = textArray[status];
+        } else {
+            // This occurs the first time the page is loaded
+            checkbox.checked = true;
+            span.innerText = textArray[true];
+        }
     }
 
     function toggleChecked(e, span, textArray, localString) {

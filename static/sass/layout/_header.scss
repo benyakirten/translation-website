@@ -15,9 +15,22 @@
         margin-right: 10rem;
         text-decoration: none;
         color: $color-black;
+
+        &-main {
+            transition: all 1.5s;
+            
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+
         &__logo {
             height: 3rem;
             width: 3rem;
+
+            &:hover {
+                animation: tipsy .8s infinite linear;
+            }
         }
     }
 }

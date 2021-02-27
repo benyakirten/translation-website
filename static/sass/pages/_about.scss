@@ -7,6 +7,17 @@
         &:visited {
             color: $color-blue-medium;
         }
+
+        // It is the container of the photo and text
+        // Desktop it has just one item.
+        // On phones there is the bottom text too
+        &-links {
+            @include respond(phone) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     }
 
     &__page {
@@ -34,7 +45,9 @@
             }
 
             @include respond(phone) {
-                height: 40rem;
+                padding-left: 3rem;
+                height: 36rem;
+                width: 80%;
                 transform: skewX(0deg);
             }
 
@@ -132,6 +145,20 @@
 
             display: flex;
             justify-content: space-around;
+            align-items: center;
+
+            &__text {
+                opacity: 0;
+                visibility: hidden;
+
+                @include respond(phone) {
+                    visibility: visible;
+                    opacity: 1;
+                    margin-top: 1rem;
+                    font-size: $font-size-normal;
+                    color: $color-blue-dark;
+                }
+            }
 
             @include respond(tab-port) {
                 width: 100%;
@@ -198,6 +225,11 @@
                     
                     &-github {
                         color: $color-blue-medium;
+                    }
+
+                    @include respond(phone) {
+                        visibility: hidden;
+                        opacity: 0;
                     }
                 }
             }
