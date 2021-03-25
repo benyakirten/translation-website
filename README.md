@@ -84,3 +84,6 @@ These have only been tracked since February 2021:
 > 5. Added an API route for retrieving the data as JSON. Details of how to use it are above under API Requests.
 3/1/2021:
 > 1. Yes, I really forgot to put an alt caption on the logo image of the header. Changed a transform-origin to left instead of 0 0
+3//24/2021:
+> 1. I've been busy with other things, but I did notice the favicon was unnecessarily large. This has been corrected.
+> 2. Let's try that again.
