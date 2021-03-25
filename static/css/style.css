@@ -404,7 +404,7 @@ body {
 }
 .recipe__ingredients__ing:hover {
   transform: scale(1.2);
-  transform-origin: 0 0;
+  transform-origin: left;
   opacity: 1;
 }
 @media only screen and (max-width: 37.5em) {

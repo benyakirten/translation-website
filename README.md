@@ -16,7 +16,7 @@ OR
     flask run
 
 ### Hey! Why's it giving me an error when I put a recipe in to translate?
-There really are two common reasons for an error. Either the recipe parser isn't able to parse the recipe--if so make sure to get rid of all query parameters--but, more likely than not, it's google cloud translate that's a problem.
+There really are two common reasons for an error. Either the recipe parser isn't able to parse the recipe--if so make sure to get rid of all query parameters on the recipe--but, more likely than not, it's google cloud translate that's a problem.
 
 You need a google cloud translate API key (or if you're running on your computer/hosting the site on a google cloud server, the security credentials). Check out these sites for information:
 
@@ -51,6 +51,7 @@ The website accept POST requests made to the /api URL and returns the recipe as 
 
 ### Future changes:
 1. Better layout of the flask app
+2. Allow users to not translate the recipe
 
 ### Changelog:
 These have only been tracked since February 2021:
@@ -81,3 +82,5 @@ These have only been tracked since February 2021:
 > 3. Added text underneath the link pictures on the About page for phone displays (since they cannot hover elements)
 > 4. Added a few fun hover animations for the main bar
 > 5. Added an API route for retrieving the data as JSON. Details of how to use it are above under API Requests.
+3/1/2021:
+> 1. Yes, I really forgot to put an alt caption on the logo image of the header. Changed a transform-origin to left instead of 0 0

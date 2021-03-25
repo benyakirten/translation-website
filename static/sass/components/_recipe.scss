@@ -63,7 +63,7 @@
 
             &:hover {
                 transform: scale(1.2);
-                transform-origin: 0 0;
+                transform-origin: left;
                 opacity: 1;
 
                 @include respond(phone) {
