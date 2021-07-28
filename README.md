@@ -43,7 +43,7 @@ It's a browser problem, but it should already be fixed with the app config. But 
 Not really as of now, besides making it look less garish. But the point of this site was just to play around with some Sass and to use a pip package that I'd made. But I do have future plans to design my own icon and maybe something for the backsplash.
 
 ### API Requests (recipe as plain JSON):
-The website accept POST requests made to the /api URL and returns the recipe as a JSON object. The parameters it accepts are below:
+The website accept GET and POST requests made to the /api URL and returns the recipe as a JSON object. The parameters (or query variables if it's a GET request) it accepts are below:
 1. url -- NECESSARY: this is the url of the recipe you are attempting to translate
 2. converter -- OPTIONAL (default: the appropriate type of converter will be guessed at using the same method as the form on the website): the type of converter to be used. Accepted values are: gz, fc, mz, ag, rm
 3. convertUnits -- OPTIONAL (default: True): this is if you want the units converted from metric to imperial. Values of true, True, yes, 1, y will set the convert_units property to True. All others will set the property to False.
@@ -51,7 +51,6 @@ The website accept POST requests made to the /api URL and returns the recipe as 
 
 ### Future changes:
 1. Better layout of the flask app
-2. Allow users to not translate the recipe
 
 ### Changelog:
 These have only been tracked since February 2021:
@@ -89,3 +88,6 @@ These have only been tracked since February 2021:
 > 2. Let's try that again.
 3/30/2021:
 > 1. Updated packages because urllib3 and Jinja2 had a vulnerability.
+7/28/2021:
+> 1. Enabled CORS for the API route
+> 2. Updated urllib3 again (finally)

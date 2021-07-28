@@ -76,7 +76,6 @@ def _converter_applied(url, converter_name, convert_units = True):
 @app.route('/api', methods = ('GET', 'POST'))
 @cross_origin()
 def api():
-    TRUE_STRINGS = ['True', 'true', '1', 'y', 'yes']
     WEBSITE_TO_VALUE = {
         "ricette.giallozafferano": "gz",
         "fattoincasa": "fc",
@@ -96,14 +95,14 @@ def api():
             for key, value in WEBSITE_TO_VALUE.items():
                 if key in url:
                     converter_type = value
-        
+
         try:
-            convert_units = recipe_json_data['convertUnits'] in TRUE_STRINGS
+            convert_units = recipe_json_data['convertUnits']
         except:
             convert_units = True
         
         try:
-            translate_recipe = recipe_json_data['translate'] in TRUE_STRINGS
+            translate_recipe = recipe_json_data['translate']
         except:
             translate_recipe = True
 
@@ -122,18 +121,14 @@ def api():
     convert_units = request.args.get('convertUnits')
     translate = request.args.get('translate')
 
-    # Getting default values or converting strings to booleans
+    # Getting default values
     if not converter:
         for key, value in WEBSITE_TO_VALUE.items():
             if key in url:
                 converter = value
-    if convert_units:
-        convert_units = convert_units in TRUE_STRINGS
-    else:
+    if not convert_units:
         convert_units = True
-    if translate:
-        translate = translate in TRUE_STRINGS
-    else:
+    if not translate:
         translate = True
     
     recipe = _converter_applied(url, converter, convert_units)
