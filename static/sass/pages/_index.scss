@@ -5,7 +5,8 @@
         background-image: linear-gradient(
             to bottom right,
             darken(rgba($color-blue-medium, 0.75), 35%),
-            darken(rgba($color-blue-dark, 0.35), 70%)),
+            darken(rgba($color-blue-dark, 0.35), 70%)
+        ),
         url(../img/Background.svg);
         background-size: cover;
     }

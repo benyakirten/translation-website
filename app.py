@@ -1,3 +1,5 @@
+import re
+
 from flask import (
     Flask,
     render_template,
@@ -7,7 +9,7 @@ from flask import (
     jsonify
 )
 from werkzeug.exceptions import HTTPException
-import re
+
 import r2api
 
 app = Flask(__name__, instance_relative_config=True)
@@ -55,54 +57,6 @@ def welcome():
         )
     return render_template('index.html')
 
-@app.route('/api', methods = ['POST'])
-def api():
-    TRUE_STRINGS = ['True', 'true', '1', 'y', 'yes']
-    WEBSITE_TO_VALUE = {
-        "ricette.giallozafferano": "gz",
-        "fattoincasa": "fc",
-        "mollichedizucchero": "mz",
-        "allacciateilgrembiule": "ag",
-        "primipiattiricette": "rm",
-    }
-
-    recipe_json_data = request.get_json(force=True)
-
-    url = recipe_json_data['url']
-
-    # Default values for the API
-    try:
-        converter_type = recipe_json_data['converter']
-    except:
-        for key, value in WEBSITE_TO_VALUE.items():
-            if key in url:
-                converter_type = value
-    
-    try:
-        if recipe_json_data['convertUnits'] in TRUE_STRINGS:
-            convert_units = True
-        else:
-            convert_units = False
-    except:
-        convert_units = True
-    
-    try:
-        if recipe_json_data['translate'] in TRUE_STRINGS:
-            translate_recipe = True
-        else:
-            translate_recipe = False
-    except:
-        translate_recipe = True
-
-    recipe = _converter_applied(url, converter_type, convert_units)
-
-    if translate_recipe:
-        recipe = r2api.translate_data(recipe)
-    else:
-        recipe = recipe.recipe
-
-    return jsonify(recipe)
-
 def _converter_applied(url, converter_name, convert_units = True):
     if converter_name == 'gz':
         return r2api.GZConverter(url, convert_units=convert_units)
@@ -117,6 +71,76 @@ def _converter_applied(url, converter_name, convert_units = True):
 
     # If none of the converters work, an exception is raised
     raise AttributeError('Converter type not recognized')
+
+@app.route('/api', methods = ('GET', 'POST'))
+def api():
+    TRUE_STRINGS = ['True', 'true', '1', 'y', 'yes']
+    WEBSITE_TO_VALUE = {
+        "ricette.giallozafferano": "gz",
+        "fattoincasa": "fc",
+        "mollichedizucchero": "mz",
+        "allacciateilgrembiule": "ag",
+        "primipiattiricette": "rm",
+    }
+
+    if request.method == 'POST':
+        recipe_json_data = request.get_json(force=True)
+        url = recipe_json_data['url']
+
+        # Default values for the API
+        try:
+            converter_type = recipe_json_data['converter']
+        except:
+            for key, value in WEBSITE_TO_VALUE.items():
+                if key in url:
+                    converter_type = value
+        
+        try:
+            convert_units = recipe_json_data['convertUnits'] in TRUE_STRINGS
+        except:
+            convert_units = True
+        
+        try:
+            translate_recipe = recipe_json_data['translate'] in TRUE_STRINGS
+        except:
+            translate_recipe = True
+
+        recipe = _converter_applied(url, converter_type, convert_units)
+
+        if translate_recipe:
+            recipe = r2api.translate_data(recipe)
+        else:
+            recipe = recipe.recipe
+
+        return jsonify(recipe)
+    
+    # For get requests
+    url = request.args.get('url')
+    converter = request.args.get('converter')
+    convert_units = request.args.get('convertUnits')
+    translate = request.args.get('translate')
+
+    # Getting default values or converting strings to booleans
+    if not converter:
+        for key, value in WEBSITE_TO_VALUE.items():
+            if key in url:
+                converter = value
+    if convert_units:
+        convert_units = convert_units in TRUE_STRINGS
+    else:
+        convert_units = True
+    if translate:
+        translate = translate in TRUE_STRINGS
+    else:
+        translate = True
+    
+    recipe = _converter_applied(url, converter, convert_units)
+    if translate:
+        recipe = r2api.translate_data(recipe)
+    else:
+        recipe = recipe.recipe
+
+    return jsonify(recipe)
 
 @app.route('/about', methods = ['GET'])
 def about():
