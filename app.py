@@ -11,6 +11,7 @@ from flask import (
 from werkzeug.exceptions import HTTPException
 
 import r2api
+from flask_cors import cross_origin
 
 app = Flask(__name__, instance_relative_config=True)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -73,6 +74,7 @@ def _converter_applied(url, converter_name, convert_units = True):
     raise AttributeError('Converter type not recognized')
 
 @app.route('/api', methods = ('GET', 'POST'))
+@cross_origin()
 def api():
     TRUE_STRINGS = ['True', 'true', '1', 'y', 'yes']
     WEBSITE_TO_VALUE = {
