@@ -50,21 +50,21 @@ The website accept GET and POST requests made to the /api URL and returns the re
 4. translate -- OPTIONAL (default: True): if you want the recipe translated to English. Values of true, True, yes, 1, y will set the convert_units property to True. All others will set the property to False.
 
 ### Future changes:
-1. Better layout of the flask app
+1. Better accessibility/SEO
 
 ### Changelog:
 These have only been tracked since February 2021:
-2/17/2021:
+* 2/17/2021:
 > 1. Bug fix: remove "1" in the before pseudoelement of the ingredients on the recipe screen (I accidentally left it in from working on the hover animation)
 > 2. Autofocus on input element only occurs on the first page
-2/21/2021:
+* 2/21/2021:
 > 1. Added the RM Converter. A plain text mode is forthcoming
-2/24/2021:
+* 2/24/2021:
 > 1. Added a plain formatting possibility to reduce load times - no pictures, text in simple flex boxes
 > 2. Plain formatting and unit conversion choices will be stored in local storage and loaded appropriately
 > 3. Changed align-items from center to flex-start in normal-format recipe
 > 4. Added second JS file to initial page titled frontpage.js in order to autofocus the input element upon load
-2/25/2021:
+* 2/25/2021:
 > 1. Changed fonts to use a sans and a serif font (hey, I'm trying)
 > 2. Changed most colors (I'm not a designer!)
 > 3. All illustrations and photos are now of brands or made by me
@@ -72,26 +72,26 @@ These have only been tracked since February 2021:
 > 5. Added an error page
 > 6. Added an about page
 > 7. Added a topbar to navigate to the abovementioned page
-2/25/2021 (hotfix/update):
+* 2/25/2021 (hotfix/update):
 > 1. Changed formatting for mobile on the about page
 > 2. Fixed up the error page -- yeah, I'd forgotten about finishing it
-2/26/2021:
+* 2/26/2021:
 > 1. I know, too many commits/changes in too quick of a time. I keep noticing small things that somehow eluded my attention before. This should be the last update for awhile unless I also update r2api.
 > 2. Made it so on the first time loading the page, the text doesn't read as undefined
 > 3. Added text underneath the link pictures on the About page for phone displays (since they cannot hover elements)
 > 4. Added a few fun hover animations for the main bar
 > 5. Added an API route for retrieving the data as JSON. Details of how to use it are above under API Requests.
-3/1/2021:
+* 3/1/2021:
 > 1. Yes, I really forgot to put an alt caption on the logo image of the header. Changed a transform-origin to left instead of 0 0
-3/24/2021:
+* 3/24/2021:
 > 1. I've been busy with other things, but I did notice the favicon was unnecessarily large. This has been corrected.
 > 2. Let's try that again.
-3/30/2021:
+* 3/30/2021:
 > 1. Updated packages because urllib3 and Jinja2 had a vulnerability.
-7/28/2021:
+* 7/28/2021:
 > 1. Enabled CORS for the API route
 > 2. Updated urllib3 again (finally)
-10/11/2021:
+* 10/11/2021:
 > 1. Removed google translate dependencies that served no purpose
 > 2. Prepared the repository to be deployed to Heroku via container
 > 3. I may update the stylings in the future to be more accessible and add some meta tags for SEO
