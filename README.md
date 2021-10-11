@@ -91,3 +91,7 @@ These have only been tracked since February 2021:
 7/28/2021:
 > 1. Enabled CORS for the API route
 > 2. Updated urllib3 again (finally)
+10/11/2021:
+> 1. Removed google translate dependencies that served no purpose
+> 2. Prepared the repository to be deployed to Heroku via container
+> 3. I may update the stylings in the future to be more accessible and add some meta tags for SEO
